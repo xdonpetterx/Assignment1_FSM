@@ -1,8 +1,4 @@
 #include "Agent.h"
-#ifdef _WIN32
-//#include "ConsoleUtils.h"
-#endif
-
 
 //-----------------------------------------------------------------------------
 void Agent::Update()

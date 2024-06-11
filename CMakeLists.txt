@@ -15,6 +15,5 @@ add_executable(Assignment1_FSM  Code/main.cpp
                                 Code/StateMachine/State.h
                                 Code/StateMachine/StateMachine.h
                                 Code/Locations/Locations.h
-                                Code/Utilities/ConsoleUtils.h
                                 Code/Utilities/TextColor.h
                                 Code/Utilities/Utilities.h)
