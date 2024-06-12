@@ -10,13 +10,16 @@ Checklist:
 - [x] Hang out with friends.
 
 - [ ] Balancing these needs is part of the task, the goal is that the character should survive for a long time.
+    - [ ] The character must be able to die from hunger, thirst, lack of sleep, or overwork.
+    - [ ] The character must be able to die from an overdose of drink (alcohol)
+    - [ ] The character must be able to die from an overdose of work.
 
 - [ ] It must be possible to send a message between several characters with similar lives. 
     - [ ] You should be able to meet in the store, when eating / drinking etc. 
     - [ ] The communication that the agents have between each other must take place in the form of a message, they all have access to a telephone with an SMS function. 
     - [ ] The dialogue between agents must be printed out and that a meeting is scheduled at a certain time and in a special place. 
     - [ ] Keep in mind that an agent can starve to death if he goes and meets friends instead of eating, if he needs to eat instead, let his friends know that he is not coming as agreed.
-- [ ] In total, values must consist of at least 4 characters.
+- [x] In total, at least 4 characters.
 
 ### For grade 4, the following must be implemented:
 - [ ] The above behaviors should be visualized graphically where the sites should be represented on a 2D surface and where the agents move between them through a straight line. 
