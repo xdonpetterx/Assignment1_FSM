@@ -64,19 +64,19 @@ public:
 //  Agent will go home and sleep until his fatigue is decreased
 //  sufficiently
 //------------------------------------------------------------------------
-class GoHomeAndSleepTilRested : public State<Agent>
+class GoHomeAndSleep : public State<Agent>
 {
 private:
 
-    GoHomeAndSleepTilRested()= default;
+    GoHomeAndSleep()= default;
 
     //copy ctor and assignment should be private
-    GoHomeAndSleepTilRested(const GoHomeAndSleepTilRested&);
-    GoHomeAndSleepTilRested& operator=(const GoHomeAndSleepTilRested&);
+    GoHomeAndSleep(const GoHomeAndSleep&);
+    GoHomeAndSleep& operator=(const GoHomeAndSleep&);
 
 public:
 
-    static GoHomeAndSleepTilRested* Instance();
+    static GoHomeAndSleep* Instance();
 
     void Enter(Agent* Agent) override;
 

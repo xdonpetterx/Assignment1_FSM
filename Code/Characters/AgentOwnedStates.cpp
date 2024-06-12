@@ -64,7 +64,7 @@ void EnterMcDonaldsAndWorkForCash::Execute(Agent* pAgent)
     //is carrying in excess of MaxCash. If he gets thirsty during
     //his work he packs up work for a while and changes state to
     //go to the Bar for a something to drink.
-    pAgent->AddToGoldCarried(1);
+    pAgent->AddToCashCarried(1);
 
     pAgent->IncreaseFatigue();
 
@@ -168,9 +168,9 @@ void VisitBankAndDepositCash::Enter(Agent* pAgent)
 void VisitBankAndDepositCash::Execute(Agent* pAgent)
 {
     //deposit the gold
-    pAgent->AddToWealth(pAgent->GoldCarried());
+    pAgent->AddToWealth(pAgent->CashCarried());
 
-    pAgent->SetGoldCarried(0);
+    pAgent->SetCashCarried(0);
 
     WORD COLOR = setColor(pAgent);
     std::multimap<std::string, std::string> DEPOSIT = depositCash(pAgent);
@@ -202,7 +202,7 @@ void VisitBankAndDepositCash::Execute(Agent* pAgent)
              << DEPOSIT.find("ifRichEnough")->second << RESET;
 #endif
         std::this_thread::sleep_for(std::chrono::milliseconds(500));
-        pAgent->GetFSM()->ChangeState(GoHomeAndSleepTilRested::Instance());
+        pAgent->GetFSM()->ChangeState(GoHomeAndSleep::Instance());
     }
 
         //otherwise get more cash
@@ -232,16 +232,16 @@ void VisitBankAndDepositCash::Exit(Agent* pAgent)
 }
 
 
-//----------------------------------------methods for GoHomeAndSleepTilRested
+//----------------------------------------methods for GoHomeAndSleep
 
-GoHomeAndSleepTilRested* GoHomeAndSleepTilRested::Instance()
+GoHomeAndSleep* GoHomeAndSleep::Instance()
 {
-    static GoHomeAndSleepTilRested instance;
+    static GoHomeAndSleep instance;
 
     return &instance;
 }
 
-void GoHomeAndSleepTilRested::Enter(Agent* pAgent)
+void GoHomeAndSleep::Enter(Agent* pAgent)
 {
     if (pAgent->Location() != AgentHouse)
     {
@@ -262,7 +262,7 @@ void GoHomeAndSleepTilRested::Enter(Agent* pAgent)
     }
 }
 
-void GoHomeAndSleepTilRested::Execute(Agent* pAgent)
+void GoHomeAndSleep::Execute(Agent* pAgent)
 {
     //if Agent is not fatigued start to dig for nuggets again.
     if (!pAgent->Fatigued())
@@ -304,7 +304,7 @@ void GoHomeAndSleepTilRested::Execute(Agent* pAgent)
     }
 }
 
-void GoHomeAndSleepTilRested::Exit(Agent* pAgent)
+void GoHomeAndSleep::Exit(Agent* pAgent)
 {
     WORD COLOR = setColor(pAgent);
     std::multimap<std::string, std::string> SLEEP = goHomeAndSleep(pAgent);
@@ -355,7 +355,7 @@ void QuenchThirst::Execute(Agent* pAgent)
 {
     if (pAgent->Thirsty())
     {
-        pAgent->BuyAndDrinkAWhiskey();
+        pAgent->DrinkSomethingAtTheBar();
 
         WORD COLOR = setColor(pAgent);
         std::multimap<std::string, std::string> DRINK = drinkAtBar(pAgent);
@@ -430,7 +430,7 @@ void ReduceHunger::Execute(Agent* pAgent)
 {
     if (pAgent->Hungry())
     {
-        pAgent->BuyAndEatPorrige();
+        pAgent->EatSomethingAtTheBar();
 
         WORD COLOR = setColor(pAgent);
         std::multimap<std::string, std::string> EAT = eatAtBar(pAgent);

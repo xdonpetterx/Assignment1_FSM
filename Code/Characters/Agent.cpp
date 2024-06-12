@@ -12,7 +12,7 @@ void Agent::Update()
 }
 
 //-----------------------------------------------------------------------------
-void Agent::AddToGoldCarried(const int val)
+void Agent::AddToCashCarried(const int val)
 {
     m_iCashCarried += val;
 

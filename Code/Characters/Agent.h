@@ -56,7 +56,7 @@ public:
     {
         m_pStateMachine = new StateMachine<Agent>(this);
 
-        m_pStateMachine->SetCurrentState(GoHomeAndSleepTilRested::Instance());
+        m_pStateMachine->SetCurrentState(GoHomeAndSleep::Instance());
     }
 
     ~Agent() override{delete m_pStateMachine;}
@@ -70,9 +70,9 @@ public:
     [[nodiscard]] location_type Location()const{return m_Location;}
     void          ChangeLocation(const location_type loc){m_Location=loc;}
 
-    [[nodiscard]] int           GoldCarried()const{return m_iCashCarried;}
-    void          SetGoldCarried(const int val){m_iCashCarried = val;}
-    void          AddToGoldCarried(int val);
+    [[nodiscard]] int           CashCarried()const{return m_iCashCarried;}
+    void          SetCashCarried(const int val){ m_iCashCarried = val;}
+    void          AddToCashCarried(int val);
     [[nodiscard]] bool          PocketsFull()const{return m_iCashCarried >= MaxCash;}
 
     [[nodiscard]] bool          Fatigued()const;
@@ -85,10 +85,10 @@ public:
     void          AddToWealth(int val);
 
     [[nodiscard]] bool          Thirsty()const;
-    void          BuyAndDrinkAWhiskey(){m_iThirst = 0; m_iMoneyInBank-=2;}
+    void          DrinkSomethingAtTheBar(){ m_iThirst = 0; m_iMoneyInBank-=2;}
 
     [[nodiscard]] bool          Hungry()const;
-    void          BuyAndEatPorrige(){m_iHunger = 0; m_iMoneyInBank-=2;}
+    void          EatSomethingAtTheBar(){ m_iHunger = 0; m_iMoneyInBank-=2;}
 
     [[nodiscard]] bool          Bored()const;
     void          MeetFriends(){m_iBoredom = 0;}
