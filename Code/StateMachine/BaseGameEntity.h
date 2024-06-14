@@ -1,5 +1,10 @@
 #pragma once
 
+#include <string>
+//---------MESSAGING------
+//#include "../Messaging/Telegram.h"
+//---------MESSAGING------
+
 class BaseGameEntity
 {
 
@@ -29,6 +34,12 @@ public:
 
     //all entities must implement an update function
     virtual void  Update()=0;
+
+    //----------MESSAGING---------
+    //all entities can communicate using messages. They are sent
+    //using the MessageDispatcher singleton class
+    //virtual bool  HandleMessage(const Telegram& msg)=0;
+    //----------MESSAGING---------
 
     [[nodiscard]] int           ID()const{return m_ID;}
 };

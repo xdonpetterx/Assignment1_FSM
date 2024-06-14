@@ -16,4 +16,12 @@ add_executable(Assignment1_FSM  Code/main.cpp
                                 Code/StateMachine/StateMachine.h
                                 Code/Locations/Locations.h
                                 Code/Utilities/TextColor.h
-                                Code/Utilities/Utilities.h)
+                                Code/Utilities/Utilities.h
+                                #Code/Messaging/CrudeTimer.h
+                                #Code/Messaging/EntityManager.cpp
+                                #Code/Messaging/EntityManager.h
+                                #Code/Messaging/MessageDispatcher.cpp
+                                #Code/Messaging/MessageDispatcher.h
+                                #Code/Messaging/MessageTypes.h
+                                #Code/Messaging/Telegram.h
+)
