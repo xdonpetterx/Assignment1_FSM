@@ -3,8 +3,8 @@
 #include <set>
 
 
-#include "ConsoleUtils.h"
-#include "Telegram.h"
+//#include "ConsoleUtils.h"
+#include <Messaging/Telegram.h>
 
 class BaseGameEntity;
 

@@ -3,10 +3,10 @@
 #include <string>
 #include <cassert>
 
-#include "../StateMachine/BaseGameEntity.h"
-#include "../Locations/Locations.h"
-#include "AgentOwnedStates.h"
-#include "../StateMachine/StateMachine.h"
+#include <Characters/AgentOwnedStates.h>
+#include <Locations/Locations.h>
+#include <StateMachine/BaseGameEntity.h>
+#include <StateMachine/StateMachine.h>
 
 
 //the amount of cash an Agent must have before he feels comfortable

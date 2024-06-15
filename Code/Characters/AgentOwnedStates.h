@@ -1,5 +1,5 @@
 #pragma once
-#include "../StateMachine/State.h"
+#include <StateMachine/State.h>
 
 class Agent;
 //------------------------------------------------------------------------

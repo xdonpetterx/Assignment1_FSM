@@ -4,7 +4,7 @@
 #include <string>
 #include <typeinfo>
 
-#include "State.h"
+#include <StateMachine/State.h>
 
 template <class entity_type>
 class StateMachine

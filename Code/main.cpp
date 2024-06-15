@@ -1,6 +1,5 @@
-#include "Locations/Locations.h"
-#include "Characters/Agent.h"
-#include "Characters/EntityNames.h"
+#include <Characters/Agent.h>
+#include <Characters/EntityNames.h>
 
 #include <iostream>
 #include <chrono>

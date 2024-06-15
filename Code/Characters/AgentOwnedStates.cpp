@@ -1,4 +1,4 @@
-#include "Personalities.h"
+#include <Characters/Personalities.h>
 
 #include <iostream>
 #include <map>

@@ -1,11 +1,12 @@
 #pragma once
-#include "AgentOwnedStates.h"
-#include "../StateMachine/State.h"
-#include "Agent.h"
-#include "../Locations/Locations.h"
-#include "EntityNames.h"
-#include "../Utilities/TextColor.h"
-#include "../Utilities/Utilities.h"
+
+#include <Characters/AgentOwnedStates.h>
+#include <Characters/Agent.h>
+#include <Characters/EntityNames.h>
+#include <Locations/Locations.h>
+#include <StateMachine/State.h>
+#include <Utilities/TextColor.h>
+#include <Utilities/Utilities.h>
 
 #include <map>
 

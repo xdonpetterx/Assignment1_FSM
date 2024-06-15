@@ -15,7 +15,6 @@
 #endif
 
 #ifndef _WIN32
-
 #define WORD std::string
 
 // Color codes for the console output for Mac and Linux

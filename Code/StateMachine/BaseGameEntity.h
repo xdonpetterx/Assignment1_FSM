@@ -2,7 +2,7 @@
 
 #include <string>
 //---------MESSAGING------
-//#include "../Messaging/Telegram.h"
+//#include <Messaging/Telegram.h>
 //---------MESSAGING------
 
 class BaseGameEntity

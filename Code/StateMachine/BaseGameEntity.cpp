@@ -1,4 +1,4 @@
-#include "BaseGameEntity.h"
+#include <StateMachine/BaseGameEntity.h>
 #include <cassert>
 
 int BaseGameEntity::m_iNextValidID = 0;

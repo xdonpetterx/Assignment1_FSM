@@ -1,11 +1,11 @@
-#include "MessageDispatcher.h"
-#include "../StateMachine/BaseGameEntity.h"
-#include "CrudeTimer.h"
-#include "EntityManager.h"
-#include "../Locations/Locations.h"
-#include "MessageTypes.h"
-#include "Telegram.h"
-#include "../Characters/EntityNames.h"
+#include <Characters/EntityNames.h>
+#include <Locations/Locations.h>
+#include <Messaging/MessageDispatcher.h>
+#include <Messaging/CrudeTimer.h>
+#include <Messaging/EntityManager.h>
+#include <Messaging/MessageTypes.h>
+#include <Messaging/Telegram.h>
+#include <StateMachine/BaseGameEntity.h>
 
 #include <iostream>
 using std::cout;
@@ -58,7 +58,7 @@ void MessageDispatcher::DispatchMessage(double  delay,
                                         void*  ExtraInfo)
 {
 #ifdef _WIN32
-    SetTextColor(BACKGROUND_RED|FOREGROUND_RED|FOREGROUND_GREEN|FOREGROUND_BLUE);
+    //SetTextColor(BACKGROUND_RED|FOREGROUND_RED|FOREGROUND_GREEN|FOREGROUND_BLUE);
 #endif
 
     //get pointers to the sender and receiver
@@ -113,7 +113,7 @@ void MessageDispatcher::DispatchMessage(double  delay,
 void MessageDispatcher::DispatchDelayedMessages()
 {
 #ifdef _WIN32
-    SetTextColor(BACKGROUND_RED|FOREGROUND_RED|FOREGROUND_GREEN|FOREGROUND_BLUE);
+    //SetTextColor(BACKGROUND_RED|FOREGROUND_RED|FOREGROUND_GREEN|FOREGROUND_BLUE);
 #endif
 
     //get current time

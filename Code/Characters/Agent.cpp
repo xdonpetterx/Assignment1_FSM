@@ -1,4 +1,4 @@
-#include "Agent.h"
+#include <Characters/Agent.h>
 
 //-----------------------------------------------------------------------------
 void Agent::Update()
