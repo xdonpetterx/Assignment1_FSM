@@ -8,6 +8,9 @@
 #include <StateMachine/BaseGameEntity.h>
 #include <StateMachine/StateMachine.h>
 
+template <class entity_type> class State; //pre-fixed with "template <class entity_type> " for vs8 compatibility
+
+struct Telegram;
 
 //the amount of cash an Agent must have before he feels comfortable
 const int ComfortLevel       = 5;

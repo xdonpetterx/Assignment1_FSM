@@ -1,4 +1,12 @@
+#include <Characters/Agent.h>
+#include <Characters/AgentOwnedStates.h>
+#include <Characters/EntityNames.h>
 #include <Characters/Personalities.h>
+#include <Locations/Locations.h>
+#include <Messaging/CrudeTimer.h>
+#include <Messaging/MessageDispatcher.h>
+#include <Messaging/MessageTypes.h>
+#include <Messaging/Telegram.h>
 
 #include <iostream>
 #include <map>
@@ -131,7 +139,11 @@ void EnterMcDonaldsAndWorkForCash::Exit(Agent* pAgent)
 #endif
 }
 
-
+bool EnterMcDonaldsAndWorkForCash::OnMessage(Agent* pAgent, const Telegram& msg)
+{
+    //send msg to global message handler
+    return false;
+}
 
 //----------------------------------------methods for VisitBankAndDepositCash
 
@@ -231,6 +243,11 @@ void VisitBankAndDepositCash::Exit(Agent* pAgent)
 #endif
 }
 
+bool VisitBankAndDepositCash::OnMessage(Agent* pAgent, const Telegram& msg)
+{
+    //send msg to global message handler
+    return false;
+}
 
 //----------------------------------------methods for GoHomeAndSleep
 
@@ -259,6 +276,13 @@ void GoHomeAndSleep::Enter(Agent* pAgent)
 #endif
         std::this_thread::sleep_for(std::chrono::milliseconds(500));
         pAgent->ChangeLocation(AgentHouse);
+
+        //let the Elena know I'm home - TODO: needs to be fixed later!!
+        Dispatch->DispatchMessage(SEND_MSG_IMMEDIATELY, //time delay
+                                  pAgent->ID(),        //ID of sender
+                                  ent_Friend_Elena,            //ID of recipient
+                                  Msg_HiHoneyImHome,   //the message
+                                  (void *) NO_ADDITIONAL_INFO);
     }
 }
 
@@ -317,6 +341,28 @@ void GoHomeAndSleep::Exit(Agent* pAgent)
 #ifndef _WIN32
     cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": " << SLEEP.find("exitHome")->second << RESET;
 #endif
+}
+
+bool GoHomeAndSleep::OnMessage(Agent* pAgent, const Telegram& msg)
+{
+    switch(msg.Msg)
+    {
+        case Msg_StewReady:
+
+            cout << "\nMessage handled by " << GetNameOfEntity(pAgent->ID())
+                 << " at time: " << Clock->GetCurrentTime();
+
+            cout << "\n" << GetNameOfEntity(pAgent->ID())
+                 << ": Okay Hun, ahm a comin'!";
+
+            //pAgent->GetFSM()->ChangeState(EatStew::Instance());
+            pAgent->GetFSM()->ChangeState(ReduceHunger::Instance());
+
+            return true;
+
+    }//end switch
+
+    return false; //send message to global message handler
 }
 
 //------------------------------------------------methods for QuenchThirst
@@ -392,6 +438,13 @@ void QuenchThirst::Exit(Agent* pAgent)
     cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": " << DRINK.find("exitBar")->second << RESET;
 #endif
 }
+
+bool QuenchThirst::OnMessage(Agent* pAgent, const Telegram& msg)
+{
+    //send msg to global message handler
+    return false;
+}
+
 // -------------------------------------------- End of methods for QuenchThirst
 
 // -------------------------------------------- Methods for reducing hunger
@@ -470,6 +523,13 @@ void ReduceHunger::Exit(Agent* pAgent)
          << EAT.find("exitBar")->second << RESET;
 #endif
 }
+
+bool ReduceHunger::OnMessage(Agent* pAgent, const Telegram& msg)
+{
+    //send msg to global message handler
+    return false;
+}
+
 // -------------------------------------------- End of methods for reducing hunger
 
 // -------------------------------------------- Methods for reducing boredom
@@ -546,6 +606,13 @@ void ReduceBoredom::Exit(Agent* pAgent)
          << MEET.find("exitBar")->second << RESET;
 #endif
 }
+
+bool ReduceBoredom::OnMessage(Agent* pAgent, const Telegram& msg)
+{
+    //send msg to global message handler
+    return false;
+}
+
 // -------------------------------------------- End of methods for reducing boredom
 
 // -------------------------------------------- Methods for buying stuff
@@ -622,4 +689,11 @@ void BuyStuff::Exit(Agent* pAgent)
     << SHOP.find("exitWalmart")->second << RESET;
 #endif
 }
+
+bool BuyStuff::OnMessage(Agent* pAgent, const Telegram& msg)
+{
+    //send msg to global message handler
+    return false;
+}
+
 //------------------------------------End of methods for buying stuff

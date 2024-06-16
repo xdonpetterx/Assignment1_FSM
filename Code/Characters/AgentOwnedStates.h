@@ -2,6 +2,7 @@
 #include <StateMachine/State.h>
 
 class Agent;
+struct Telegram;
 //------------------------------------------------------------------------
 //
 //  In this state the Agent will walk to a McDonald's and get cash for working.
@@ -23,13 +24,13 @@ public:
 
     static EnterMcDonaldsAndWorkForCash* Instance();
 
-public:
-
     void Enter(Agent* Agent) override;
 
     void Execute(Agent* Agent) override;
 
     void Exit(Agent* Agent) override;
+
+    virtual bool OnMessage(Miner* agent, const Telegram& msg);
 
 };
 
@@ -57,6 +58,8 @@ public:
     void Execute(Agent* Agent) override;
 
     void Exit(Agent* Agent) override;
+
+    virtual bool OnMessage(Miner* agent, const Telegram& msg);
 };
 
 //------------------------------------------------------------------------
@@ -83,6 +86,8 @@ public:
     void Execute(Agent* Agent) override;
 
     void Exit(Agent* Agent) override;
+
+    virtual bool OnMessage(Miner* agent, const Telegram& msg);
 };
 
 //------------------------------------------------------------------------
@@ -107,6 +112,8 @@ public:
     void Execute(Agent* Agent) override;
 
     void Exit(Agent* Agent) override;
+
+    virtual bool OnMessage(Miner* agent, const Telegram& msg);
 };
 
 class ReduceHunger : public State<Agent>
@@ -128,6 +135,8 @@ public:
     void Execute(Agent* Agent) override;
 
     void Exit(Agent* Agent) override;
+
+    virtual bool OnMessage(Miner* agent, const Telegram& msg);
 };
 
 class ReduceBoredom : public State<Agent>
@@ -149,6 +158,8 @@ public:
     void Execute(Agent* Agent) override;
 
     void Exit(Agent* Agent) override;
+
+    virtual bool OnMessage(Miner* agent, const Telegram& msg);
 };
 
 class BuyStuff : public State<Agent>
@@ -170,4 +181,6 @@ public:
     void Execute(Agent* Agent) override;
 
     void Exit(Agent* Agent) override;
+
+    virtual bool OnMessage(Miner* agent, const Telegram& msg);
 };

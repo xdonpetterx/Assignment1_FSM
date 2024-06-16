@@ -2,7 +2,7 @@
 
 #include <string>
 //---------MESSAGING------
-//#include <Messaging/Telegram.h>
+#include <Messaging/Telegram.h>
 //---------MESSAGING------
 
 class BaseGameEntity
@@ -38,7 +38,7 @@ public:
     //----------MESSAGING---------
     //all entities can communicate using messages. They are sent
     //using the MessageDispatcher singleton class
-    //virtual bool  HandleMessage(const Telegram& msg)=0;
+    virtual bool  HandleMessage(const Telegram& msg)=0;
     //----------MESSAGING---------
 
     [[nodiscard]] int           ID()const{return m_ID;}
