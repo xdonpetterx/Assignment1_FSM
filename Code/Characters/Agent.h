@@ -67,6 +67,7 @@ public:
     //this must be implemented
     void Update() override;
 
+    virtual bool  HandleMessage(const Telegram& msg);
     [[nodiscard]] StateMachine<Agent>*  GetFSM()const{return m_pStateMachine;}
 
 

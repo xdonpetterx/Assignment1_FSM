@@ -30,7 +30,7 @@ public:
 
     void Exit(Agent* Agent) override;
 
-    virtual bool OnMessage(Miner* agent, const Telegram& msg);
+    virtual bool OnMessage(Agent* agent, const Telegram& msg);
 
 };
 
@@ -59,7 +59,7 @@ public:
 
     void Exit(Agent* Agent) override;
 
-    virtual bool OnMessage(Miner* agent, const Telegram& msg);
+    virtual bool OnMessage(Agent* agent, const Telegram& msg);
 };
 
 //------------------------------------------------------------------------
@@ -87,7 +87,7 @@ public:
 
     void Exit(Agent* Agent) override;
 
-    virtual bool OnMessage(Miner* agent, const Telegram& msg);
+    virtual bool OnMessage(Agent* agent, const Telegram& msg);
 };
 
 //------------------------------------------------------------------------
@@ -113,7 +113,7 @@ public:
 
     void Exit(Agent* Agent) override;
 
-    virtual bool OnMessage(Miner* agent, const Telegram& msg);
+    virtual bool OnMessage(Agent* agent, const Telegram& msg);
 };
 
 class ReduceHunger : public State<Agent>
@@ -136,7 +136,7 @@ public:
 
     void Exit(Agent* Agent) override;
 
-    virtual bool OnMessage(Miner* agent, const Telegram& msg);
+    virtual bool OnMessage(Agent* agent, const Telegram& msg);
 };
 
 class ReduceBoredom : public State<Agent>
@@ -159,7 +159,7 @@ public:
 
     void Exit(Agent* Agent) override;
 
-    virtual bool OnMessage(Miner* agent, const Telegram& msg);
+    virtual bool OnMessage(Agent* agent, const Telegram& msg);
 };
 
 class BuyStuff : public State<Agent>
@@ -182,5 +182,5 @@ public:
 
     void Exit(Agent* Agent) override;
 
-    virtual bool OnMessage(Miner* agent, const Telegram& msg);
+    virtual bool OnMessage(Agent* agent, const Telegram& msg);
 };
