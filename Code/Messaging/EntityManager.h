@@ -48,7 +48,7 @@ public:
     void            RegisterEntity(BaseGameEntity* NewEntity);
 
     //returns a pointer to the entity with the ID given as a parameter
-    BaseGameEntity* GetEntityFromID(int id)const;
+    [[nodiscard]] BaseGameEntity* GetEntityFromID(int id)const;
 
     //this method removes the entity from the list
     void            RemoveEntity(BaseGameEntity* pEntity);

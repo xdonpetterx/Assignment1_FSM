@@ -49,7 +49,7 @@ public:
         if (m_pCurrentState) m_pCurrentState->Execute(m_pOwner);
     }
 
-    bool  HandleMessage(const Telegram& msg)const
+    [[nodiscard]] bool  HandleMessage(const Telegram& msg)const
     {
         //first see if the current state is valid and that it can handle
         //the message
