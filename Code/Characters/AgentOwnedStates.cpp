@@ -274,8 +274,6 @@ void GoHomeAndSleep::Enter(Agent* pAgent)
         cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
         << SLEEP.find("enterHome")->second << RESET;
 #endif
-        std::this_thread::sleep_for(std::chrono::milliseconds(500));
-        pAgent->ChangeLocation(AgentHouse);
 
         //let the Elena know I'm home - TODO: needs to be fixed later!!
         Dispatch->DispatchMessage(SEND_MSG_IMMEDIATELY, //time delay
@@ -283,6 +281,9 @@ void GoHomeAndSleep::Enter(Agent* pAgent)
                                   ent_Friend_Elena,            //ID of recipient
                                   Msg_HiHoneyImHome,   //the message
                                   (void *) NO_ADDITIONAL_INFO);
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+        pAgent->ChangeLocation(AgentHouse);
     }
 }
 
