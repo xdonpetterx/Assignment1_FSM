@@ -81,7 +81,7 @@ public:
 
     [[nodiscard]] bool          Fatigued()const;
     void          DecreaseFatigue(){m_iFatigue -= 1;}
-    void          IncreaseFatigue(){m_iFatigue += 1;}
+    void IncreaseFatigue() { m_iFatigue += 5;}
 
     [[nodiscard]] int           Wealth()const{return m_iMoneyInBank;}
 

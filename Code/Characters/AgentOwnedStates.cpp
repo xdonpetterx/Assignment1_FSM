@@ -119,6 +119,11 @@ void EnterMcDonaldsAndWorkForCash::Execute(Agent* pAgent)
         std::this_thread::sleep_for(std::chrono::milliseconds(500));
         pAgent->GetFSM()->ChangeState(BuyStuff::Instance());
     }
+    if (pAgent->Fatigued())
+    {
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+        pAgent->GetFSM()->ChangeState(GoHomeAndSleep::Instance());
+    }
 }
 
 
@@ -239,7 +244,7 @@ void VisitBankAndDepositCash::Exit(Agent* pAgent)
 #endif
 #ifndef _WIN32
     cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
-    << DEPOSIT.find("ifRichEnough")->second << RESET;
+    << DEPOSIT.find("depositing")->second << RESET;
 #endif
 }
 

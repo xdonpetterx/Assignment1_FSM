@@ -69,3 +69,8 @@ Unchecked files needs fixing to get messaging working:
 31. EnterMcDonaldsAndWorkForCash - enterWork 
 32. EnterMcDonaldsAndWorkForCash - working 
 33. EnterMcDonaldsAndWorkForCash - exitWork 
+
+Setting the breakpoint in line 86 in Personalities.h stops the process
+Setting the breakpoint in line 242 in AgentOwnedStates.cpp stops the process
+which means that VisitBankAndDepositCash::Exit is always called!
+But VisitBankAndDepositCash::Execute is not!!
