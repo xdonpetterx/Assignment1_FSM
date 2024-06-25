@@ -10,19 +10,19 @@ struct Telegram;
 //  to VisitBankAndDepositCash. If he gets thirsty he'll change state
 //  to QuenchThirst and if he gets hungry he'll change state to ReduceHunger
 //------------------------------------------------------------------------
-class EnterMcDonaldsAndWorkForCash : public State<Agent>
+class Working : public State<Agent>
 {
 private:
 
-    EnterMcDonaldsAndWorkForCash()= default;
+    Working()= default;
 
     //copy ctor and assignment should be private
-    EnterMcDonaldsAndWorkForCash(const EnterMcDonaldsAndWorkForCash&);
-    EnterMcDonaldsAndWorkForCash& operator=(const EnterMcDonaldsAndWorkForCash&);
+    Working(const Working&);
+    Working& operator=(const Working&);
 
 public:
 
-    static EnterMcDonaldsAndWorkForCash* Instance();
+    static Working* Instance();
 
     void Enter(Agent* Agent) override;
 

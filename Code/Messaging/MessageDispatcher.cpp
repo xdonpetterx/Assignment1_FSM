@@ -9,16 +9,6 @@
 
 #include <iostream>
 
-//using std::set;
-
-#ifdef TEXTOUTPUT
-#include <fstream>
-extern std::ofstream os;
-#define cout os
-#endif
-
-
-
 //------------------------------ Instance -------------------------------------
 
 MessageDispatcher* MessageDispatcher::Instance()
@@ -35,9 +25,6 @@ MessageDispatcher* MessageDispatcher::Instance()
 //------------------------------------------------------------------------
 void MessageDispatcher::Discharge(BaseGameEntity *pReceiver, const Telegram &msg) {
     if (!pReceiver->HandleMessage(Telegram()))
-/* Funktionen fixad!! Felet
- * var att funktionens andra argument var const int & msg. När jag ändrade till
- * const Telegram &msg började det fungera!!! */
     {
         //telegram could not be handled
         std::cout << "Message not handled";

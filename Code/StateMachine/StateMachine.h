@@ -36,6 +36,7 @@ public:
 
     //use these methods to initialize the FSM
     void SetCurrentState(State<entity_type>* s){m_pCurrentState = s;}
+
     [[maybe_unused]] void SetGlobalState(State<entity_type>* s) {m_pGlobalState = s;}
     [[maybe_unused]] void SetPreviousState(State<entity_type>* s){m_pPreviousState = s;}
 

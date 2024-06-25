@@ -12,15 +12,6 @@
 #include <map>
 #include <thread>
 
-using std::cout;
-
-
-#ifdef TEXTOUTPUT
-#include <fstream>
-extern std::ofstream os;
-#define cout os
-#endif
-
 WORD setColor(Agent* pAgent)
 {
     WORD COLOR;
@@ -34,15 +25,15 @@ WORD setColor(Agent* pAgent)
 
 
 
-//--------------------------------------methods for EnterMcDonaldsAndWorkForCash
+//--------------------------------------methods for Working
 
-EnterMcDonaldsAndWorkForCash* EnterMcDonaldsAndWorkForCash::Instance()
+Working* Working::Instance()
 {
-    static EnterMcDonaldsAndWorkForCash instance;
+    static Working instance;
     return &instance;
 }
 
-void EnterMcDonaldsAndWorkForCash::Enter(Agent* pAgent)
+void Working::Enter(Agent* pAgent)
 {
     //if the Agent is not already located at McDonalds, he must
     //change location to the gold mine
@@ -53,11 +44,11 @@ void EnterMcDonaldsAndWorkForCash::Enter(Agent* pAgent)
 #ifdef _WIN32
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, COLOR);
-        cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << WORK.find("enterWork")->second;
+        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << WORK.find("enterWork")->second;
         SetConsoleTextAttribute(hConsole, RESET);
 #endif
 #ifndef _WIN32
-        cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
+        std::cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
         << WORK.find("enterWork")->second << RESET;
 #endif
         std::this_thread::sleep_for(std::chrono::milliseconds(500));
@@ -66,7 +57,7 @@ void EnterMcDonaldsAndWorkForCash::Enter(Agent* pAgent)
 }
 
 
-void EnterMcDonaldsAndWorkForCash::Execute(Agent* pAgent)
+void Working::Execute(Agent* pAgent)
 {
     //if the Agent is at the workplace he works for money until he
     //is carrying in excess of MaxCash. If he gets thirsty during
@@ -81,11 +72,11 @@ void EnterMcDonaldsAndWorkForCash::Execute(Agent* pAgent)
 #ifdef _WIN32
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, COLOR);
-        cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << WORK.find("working")->second;
+        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << WORK.find("working")->second;
         SetConsoleTextAttribute(hConsole, RESET);
 #endif
 #ifndef _WIN32
-    cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
+    std::cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
     << WORK.find("working")->second << RESET;
 #endif
 
@@ -127,24 +118,24 @@ void EnterMcDonaldsAndWorkForCash::Execute(Agent* pAgent)
 }
 
 
-void EnterMcDonaldsAndWorkForCash::Exit(Agent* pAgent)
+void Working::Exit(Agent* pAgent)
 {
     WORD COLOR = setColor(pAgent);
     std::multimap<std::string, std::string> WORK = setWork(pAgent);
 #ifdef _WIN32
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, COLOR);
-        cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": "
+        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": "
              << WORK.find("exitWork")->second;
         SetConsoleTextAttribute(hConsole, RESET);
 #endif
 #ifndef _WIN32
-    cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
+    std::cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
     << WORK.find("exitWork")->second << RESET;
 #endif
 }
 
-bool EnterMcDonaldsAndWorkForCash::OnMessage(Agent* pAgent, const Telegram& msg)
+bool Working::OnMessage(Agent* pAgent, const Telegram& msg)
 {
     //send msg to global message handler
     return false;
@@ -169,11 +160,11 @@ void VisitBankAndDepositCash::Enter(Agent* pAgent)
 #ifdef _WIN32
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, COLOR);
-        cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << DEPOSIT.find("enterBank")->second;
+        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << DEPOSIT.find("enterBank")->second;
         SetConsoleTextAttribute(hConsole, RESET);
 #endif
 #ifndef _WIN32
-        cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
+        std::cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
         << DEPOSIT.find("enterBank")->second << RESET;
 #endif
         std::this_thread::sleep_for(std::chrono::milliseconds(500));
@@ -194,12 +185,12 @@ void VisitBankAndDepositCash::Execute(Agent* pAgent)
 #ifdef _WIN32
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, COLOR);
-        cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": "
+        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": "
         << DEPOSIT.find("depositing")->second << pAgent->Wealth();
         SetConsoleTextAttribute(hConsole, RESET);
 #endif
 #ifndef _WIN32
-    cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
+    std::cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
     << DEPOSIT.find("depositing")->second << pAgent->Wealth() << RESET;
 #endif
 
@@ -210,12 +201,12 @@ void VisitBankAndDepositCash::Execute(Agent* pAgent)
 #ifdef _WIN32
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, COLOR);
-        cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": "
+        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": "
              << DEPOSIT.find("ifRichEnough")->second;
         SetConsoleTextAttribute(hConsole, RESET);
 #endif
 #ifndef _WIN32
-        cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
+        std::cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
              << DEPOSIT.find("ifRichEnough")->second << RESET;
 #endif
         std::this_thread::sleep_for(std::chrono::milliseconds(500));
@@ -226,7 +217,7 @@ void VisitBankAndDepositCash::Execute(Agent* pAgent)
     else
     {
         std::this_thread::sleep_for(std::chrono::milliseconds(500));
-        pAgent->GetFSM()->ChangeState(EnterMcDonaldsAndWorkForCash::Instance());
+        pAgent->GetFSM()->ChangeState(Working::Instance());
     }
 
 }
@@ -239,11 +230,11 @@ void VisitBankAndDepositCash::Exit(Agent* pAgent)
 #ifdef _WIN32
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, COLOR);
-        cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << DEPOSIT.find("ifRichEnough")->second;
+        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << DEPOSIT.find("ifRichEnough")->second;
         SetConsoleTextAttribute(hConsole, RESET);
 #endif
 #ifndef _WIN32
-    cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
+    std::cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
     << DEPOSIT.find("depositing")->second << RESET;
 #endif
 }
@@ -272,11 +263,11 @@ void GoHomeAndSleep::Enter(Agent* pAgent)
 #ifdef _WIN32
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, COLOR);
-        cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << SLEEP.find("enterHome")->second;
+        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << SLEEP.find("enterHome")->second;
         SetConsoleTextAttribute(hConsole, RESET);
 #endif
 #ifndef _WIN32
-        cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
+        std::cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
         << SLEEP.find("enterHome")->second << RESET;
 #endif
 
@@ -302,16 +293,16 @@ void GoHomeAndSleep::Execute(Agent* pAgent)
 #ifdef _WIN32
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, COLOR);
-        cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": "
+        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": "
              << SLEEP.find("notFatigued")->second;
         SetConsoleTextAttribute(hConsole, RESET);
 #endif
 #ifndef _WIN32
-        cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
+        std::cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
              << SLEEP.find("notFatigued")->second << RESET;
 #endif
         std::this_thread::sleep_for(std::chrono::milliseconds(500));
-        pAgent->GetFSM()->ChangeState(EnterMcDonaldsAndWorkForCash::Instance());
+        pAgent->GetFSM()->ChangeState(Working::Instance());
     }
 
     else
@@ -324,11 +315,11 @@ void GoHomeAndSleep::Execute(Agent* pAgent)
 #ifdef _WIN32
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, COLOR);
-        cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << SLEEP.find("sleeping")->second;
+        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << SLEEP.find("sleeping")->second;
         SetConsoleTextAttribute(hConsole, RESET);
 #endif
 #ifndef _WIN32
-        cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
+        std::cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
              << SLEEP.find("sleeping")->second << RESET;
 #endif
     }
@@ -341,11 +332,11 @@ void GoHomeAndSleep::Exit(Agent* pAgent)
 #ifdef _WIN32
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, COLOR);
-        cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << SLEEP.find("exitHome")->second;
+        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << SLEEP.find("exitHome")->second;
         SetConsoleTextAttribute(hConsole, RESET);
 #endif
 #ifndef _WIN32
-    cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": " << SLEEP.find("exitHome")->second << RESET;
+    std::cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": " << SLEEP.find("exitHome")->second << RESET;
 #endif
 }
 
@@ -355,10 +346,10 @@ bool GoHomeAndSleep::OnMessage(Agent* pAgent, const Telegram& msg)
     {
         case Msg_StewReady:
 
-            cout << "\nMessage handled by " << GetNameOfEntity(pAgent->ID())
+            std::cout << "\nMessage handled by " << GetNameOfEntity(pAgent->ID())
                  << " at time: " << Clock->GetCurrentTime();
 
-            cout << "\n" << GetNameOfEntity(pAgent->ID())
+            std::cout << "\n" << GetNameOfEntity(pAgent->ID())
                  << ": Okay Hun, ahm a comin'!";
 
             //pAgent->GetFSM()->ChangeState(EatStew::Instance());
@@ -392,12 +383,12 @@ void QuenchThirst::Enter(Agent* pAgent)
 #ifdef _WIN32
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, COLOR);
-        cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": "
+        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": "
              << DRINK.find("enterBar")->second;
         SetConsoleTextAttribute(hConsole, RESET);
 #endif
 #ifndef _WIN32
-        cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
+        std::cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
              << DRINK.find("enterBar")->second << RESET;
 #endif
     }
@@ -414,19 +405,19 @@ void QuenchThirst::Execute(Agent* pAgent)
 #ifdef _WIN32
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, COLOR);
-        cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << DRINK.find("drinking")->second;
+        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << DRINK.find("drinking")->second;
         SetConsoleTextAttribute(hConsole, RESET);
 #endif
 #ifndef _WIN32
-        cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": " << DRINK.find("drinking")->second << RESET;
+        std::cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": " << DRINK.find("drinking")->second << RESET;
 #endif
         std::this_thread::sleep_for(std::chrono::milliseconds(500));
-        pAgent->GetFSM()->ChangeState(EnterMcDonaldsAndWorkForCash::Instance());
+        pAgent->GetFSM()->ChangeState(Working::Instance());
     }
 
     else
     {
-        cout << "\nERROR!\nERROR!\nERROR!";
+        std::cout << "\nERROR!\nERROR!\nERROR!";
     }
 }
 
@@ -437,11 +428,11 @@ void QuenchThirst::Exit(Agent* pAgent)
 #ifdef _WIN32
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, COLOR);
-        cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << DRINK.find("exitBar")->second;
+        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << DRINK.find("exitBar")->second;
         SetConsoleTextAttribute(hConsole, RESET);
 #endif
 #ifndef _WIN32
-    cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": " << DRINK.find("exitBar")->second << RESET;
+    std::cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": " << DRINK.find("exitBar")->second << RESET;
 #endif
 }
 
@@ -474,12 +465,12 @@ void ReduceHunger::Enter(Agent* pAgent)
 #ifdef _WIN32
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, COLOR);
-        cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": "
+        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": "
              << EAT.find(enterBar)->second;
         SetConsoleTextAttribute(hConsole, RESET);
 #endif
 #ifndef _WIN32
-        cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
+        std::cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
              << EAT.find(enterBar)->second << RESET;
 #endif
     }
@@ -496,21 +487,21 @@ void ReduceHunger::Execute(Agent* pAgent)
 #ifdef _WIN32
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, COLOR);
-        cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": "
+        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": "
              << EAT.find("eating")->second;
         SetConsoleTextAttribute(hConsole, RESET);
 #endif
 #ifndef _WIN32
-        cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
+        std::cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
              << EAT.find("eating")->second << RESET;
 #endif
         std::this_thread::sleep_for(std::chrono::milliseconds(500));
-        pAgent->GetFSM()->ChangeState(EnterMcDonaldsAndWorkForCash::Instance());
+        pAgent->GetFSM()->ChangeState(Working::Instance());
     }
 
     else
     {
-        cout << "\nERROR!\nERROR!\nERROR!";
+        std::cout << "\nERROR!\nERROR!\nERROR!";
     }
 }
 
@@ -521,11 +512,11 @@ void ReduceHunger::Exit(Agent* pAgent)
 #ifdef _WIN32
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, COLOR);
-        cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << EAT.find("exitBar")->second;
+        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << EAT.find("exitBar")->second;
         SetConsoleTextAttribute(hConsole, RESET);
 #endif
 #ifndef _WIN32
-    cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
+    std::cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
          << EAT.find("exitBar")->second << RESET;
 #endif
 }
@@ -558,12 +549,12 @@ void ReduceBoredom::Enter(Agent* pAgent)
 #ifdef _WIN32
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, COLOR);
-        cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": "
+        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": "
              << MEET.find("enterBar")->second;
         SetConsoleTextAttribute(hConsole, RESET);
 #endif
 #ifndef _WIN32
-        cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
+        std::cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
              << MEET.find("enterBar")->second << RESET;
 #endif
     }
@@ -580,20 +571,20 @@ void ReduceBoredom::Execute(Agent* pAgent)
 #ifdef _WIN32
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, COLOR);
-        cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << MEET.find("atBar")->second;
+        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << MEET.find("atBar")->second;
         SetConsoleTextAttribute(hConsole, RESET);
 #endif
 #ifndef _WIN32
-        cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
+        std::cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
              << MEET.find("atBar")->second << RESET;
 #endif
         std::this_thread::sleep_for(std::chrono::milliseconds(500));
-        pAgent->GetFSM()->ChangeState(EnterMcDonaldsAndWorkForCash::Instance());
+        pAgent->GetFSM()->ChangeState(Working::Instance());
     }
 
     else
     {
-        cout << "\nERROR!\nERROR!\nERROR!";
+        std::cout << "\nERROR!\nERROR!\nERROR!";
     }
 }
 
@@ -604,11 +595,11 @@ void ReduceBoredom::Exit(Agent* pAgent)
 #ifdef _WIN32
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, COLOR);
-        cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << MEET.find("exitBar")->second;
+        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << MEET.find("exitBar")->second;
         SetConsoleTextAttribute(hConsole, RESET);
 #endif
 #ifndef _WIN32
-    cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
+    std::cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
          << MEET.find("exitBar")->second << RESET;
 #endif
 }
@@ -641,12 +632,12 @@ void BuyStuff::Enter(Agent* pAgent)
 #ifdef _WIN32
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, COLOR);
-        cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": "
+        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": "
              << SHOP.find("enterWalmart")->second;
         SetConsoleTextAttribute(hConsole, RESET);
 #endif
 #ifndef _WIN32
-        cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
+        std::cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
              << SHOP.find("enterWalmart")->second << RESET;
 #endif
     }
@@ -663,20 +654,20 @@ void BuyStuff::Execute(Agent* pAgent)
 #ifdef _WIN32
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, COLOR);
-        cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << SHOP.find("atWalmart")->second;
+        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << SHOP.find("atWalmart")->second;
         SetConsoleTextAttribute(hConsole, RESET);
 #endif
 #ifndef _WIN32
-        cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
+        std::cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
         << SHOP.find("atWalmart")->second << RESET;
 #endif
         std::this_thread::sleep_for(std::chrono::milliseconds(500));
-        pAgent->GetFSM()->ChangeState(EnterMcDonaldsAndWorkForCash::Instance());
+        pAgent->GetFSM()->ChangeState(Working::Instance());
     }
 
     else
     {
-        cout << "\nERROR!\nERROR!\nERROR!";
+        std::cout << "\nERROR!\nERROR!\nERROR!";
     }
 }
 
@@ -687,11 +678,11 @@ void BuyStuff::Exit(Agent* pAgent)
 #ifdef _WIN32
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, COLOR);
-        cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << SHOP.find("exitWalmart")->second;
+        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << SHOP.find("exitWalmart")->second;
         SetConsoleTextAttribute(hConsole, RESET);
 #endif
 #ifndef _WIN32
-    cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
+    std::cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
     << SHOP.find("exitWalmart")->second << RESET;
 #endif
 }

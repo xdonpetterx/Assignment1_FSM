@@ -38,27 +38,27 @@ Unchecked files needs fixing to get messaging working:
 ### States in order:
 1. GoHomeAndSleep - notFatigued
 2. GoHomeAndSleep - exitHome
-3. EnterMcDonaldsAndWorkForCash - enterWork
-4. EnterMcDonaldsAndWorkForCash - working
-5. EnterMcDonaldsAndWorkForCash - working
-6. EnterMcDonaldsAndWorkForCash - working
-7. EnterMcDonaldsAndWorkForCash - exitWork
+3. Working - enterWork
+4. Working - working
+5. Working - working
+6. Working - working
+7. Working - exitWork
 8. VisitBankAndDepositCash - enterBank
 9. VisitBankAndDepositCash - ifRichEnough
 10. eatAtBar - enterBar
 11. eatAtBar - eating
 12. eatAtBar - exitBar
-13. EnterMcDonaldsAndWorkForCash - enterWork
-14. EnterMcDonaldsAndWorkForCash - working
-15. EnterMcDonaldsAndWorkForCash - exitWork
+13. Working - enterWork
+14. Working - working
+15. Working - exitWork
 16. VisitBankAndDepositCash - enterBank
 17. VisitBankAndDepositCash - ifRichEnough
 18. drinkAtBar - enterBar
 19. drinkAtBar - drinking
 20. drinkAtBar - exitBar
-21. EnterMcDonaldsAndWorkForCash - enterWork 
-22. EnterMcDonaldsAndWorkForCash - working 
-23. EnterMcDonaldsAndWorkForCash - exitWork 
+21. Working - enterWork 
+22. Working - working 
+23. Working - exitWork 
 24. VisitBankAndDepositCash - enterBank 
 25. VisitBankAndDepositCash - ifRichEnough
 26. meetFriendsAtBar - enterBar
@@ -66,9 +66,9 @@ Unchecked files needs fixing to get messaging working:
 28. shopAtWalmart - enterWalmart
 29. shopAtWalmart - atWalmart
 30. shopAtWalmart - exitWalmart
-31. EnterMcDonaldsAndWorkForCash - enterWork 
-32. EnterMcDonaldsAndWorkForCash - working 
-33. EnterMcDonaldsAndWorkForCash - exitWork 
+31. Working - enterWork 
+32. Working - working 
+33. Working - exitWork 
 
 Setting the breakpoint in line 86 in Personalities.h stops the process
 Setting the breakpoint in line 242 in AgentOwnedStates.cpp stops the process
