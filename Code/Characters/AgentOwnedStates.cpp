@@ -12,6 +12,12 @@
 #include <map>
 #include <thread>
 
+#ifdef TEXTOUTPUT
+#include <fstream>
+extern std::ofstream os;
+#define cout os
+#endif
+
 WORD setColor(Agent* pAgent)
 {
     WORD COLOR;
