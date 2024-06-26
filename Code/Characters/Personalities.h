@@ -9,7 +9,7 @@
 #include <Utilities/Utilities.h>
 
 #include <map>
-#include <format>
+// #include <format>
 
 std::multimap<std::string, std::string> setWork(Agent* pAgent)
 {
@@ -67,34 +67,34 @@ std::multimap<std::string, std::string> setWork(Agent* pAgent)
 
 std::multimap<std::string, std::string> depositCash(Agent* pAgent)
 {
-    auto charlieWealth = std::format("Here's mi money. Total savings now: {}$", pAgent->Wealth());
-    auto elenaWealth = std::format("Depositing savings. Total savings now: {}$", pAgent->Wealth());
-    auto jonnyWealth = std::format("Depositing savings. Total savings now: {}$", pAgent->Wealth());
-    auto mikeWealth = std::format("Depositing savings. Total savings now: {}$", pAgent->Wealth());
+    // auto charlieWealth = std::format("Here's mi money. Total savings now: {}$", pAgent->Wealth());
+    // auto elenaWealth = std::format("Depositing savings. Total savings now: {}$", pAgent->Wealth());
+    // auto jonnyWealth = std::format("Depositing savings. Total savings now: {}$", pAgent->Wealth());
+    // auto mikeWealth = std::format("Depositing savings. Total savings now: {}$", pAgent->Wealth());
 
     std::multimap<std::string, std::string> DEPOSIT;
     if (GetNameOfEntity(pAgent->ID()) == "Agent Charlie"){
         DEPOSIT.insert(std::make_pair("enterBank","Going to the Bank. Yes sir!"));
-        DEPOSIT.insert(std::make_pair("depositing",charlieWealth));
+        DEPOSIT.insert(std::make_pair("depositing","Here's mi money. Total savings now: $"));
         DEPOSIT.insert(std::make_pair("ifRichEnough",
                                          "WooHoo! Rich enough for now. Back home for some well earned rest"));
         DEPOSIT.insert(std::make_pair("exitBank","Leavin' the bank"));
     }
     else if (GetNameOfEntity(pAgent->ID()) == "Friend Elena"){
         DEPOSIT.insert(std::make_pair("enterBank","Taking a Uber to the Bank to deposit my savings"));
-        DEPOSIT.insert(std::make_pair("depositing",elenaWealth));
+        DEPOSIT.insert(std::make_pair("depositing","Depositing savings. Total savings now: $"));
         DEPOSIT.insert(std::make_pair("ifRichEnough","Rich enough. Back home to watch some Netflix"));
         DEPOSIT.insert(std::make_pair("exitBank","Leaving the bank"));
     }
     else if (GetNameOfEntity(pAgent->ID()) == "Friend Jonny"){
         DEPOSIT.insert(std::make_pair("enterBank","Riding a bike to the Bank. Going to deposit my savings"));
-        DEPOSIT.insert(std::make_pair("depositing",jonnyWealth));
+        DEPOSIT.insert(std::make_pair("depositing","Depositing savings. Total savings now: $"));
         DEPOSIT.insert(std::make_pair("ifRichEnough","Rich enough for now. Back home for some video games"));
         DEPOSIT.insert(std::make_pair("exitBank","Leaving the bank"));
     }
     else if (GetNameOfEntity(pAgent->ID()) == "Friend Mike"){
         DEPOSIT.insert(std::make_pair("enterBank","Driving to the Bank. Goin' to deposit my savings"));
-        DEPOSIT.insert(std::make_pair("depositing",mikeWealth));
+        DEPOSIT.insert(std::make_pair("depositing","Depositing savings. Total savings now: $"));
         DEPOSIT.insert(std::make_pair("ifRichEnough",
                                          "Rich enough for now. Back home for some guitar practice"));
         DEPOSIT.insert(std::make_pair("exitBank","Leaving the bank"));

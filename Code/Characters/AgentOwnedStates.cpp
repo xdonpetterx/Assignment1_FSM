@@ -93,30 +93,30 @@ void Working::Execute(Agent* pAgent)
         pAgent->GetFSM()->ChangeState(VisitBankAndDepositCash::Instance());
     }
 
-    if (pAgent->Thirsty())
+    else if (pAgent->Thirsty())
     {
         std::this_thread::sleep_for(std::chrono::milliseconds(500));
         pAgent->GetFSM()->ChangeState(QuenchThirst::Instance());
     }
 
-    if (pAgent->Hungry())
+    else if (pAgent->Hungry())
     {
         std::this_thread::sleep_for(std::chrono::milliseconds(500));
         pAgent->GetFSM()->ChangeState(ReduceHunger::Instance());
     }
 
-    if (pAgent->Bored())
+    else if (pAgent->Bored())
     {
         std::this_thread::sleep_for(std::chrono::milliseconds(500));
         pAgent->GetFSM()->ChangeState(ReduceBoredom::Instance());
     }
 
-    if (pAgent->KeenOnBuying())
+    else if (pAgent->KeenOnBuying())
     {
         std::this_thread::sleep_for(std::chrono::milliseconds(500));
         pAgent->GetFSM()->ChangeState(BuyStuff::Instance());
     }
-    if (pAgent->Fatigued())
+    else if (pAgent->Fatigued())
     {
         std::this_thread::sleep_for(std::chrono::milliseconds(500));
         pAgent->GetFSM()->ChangeState(GoHomeAndSleep::Instance());
@@ -278,11 +278,11 @@ void GoHomeAndSleep::Enter(Agent* pAgent)
 #endif
 
         //let the Elena know I'm home - TODO: needs to be fixed later!!
-        Dispatch->DispatchMessage(SEND_MSG_IMMEDIATELY, //time delay
-                                  pAgent->ID(),        //ID of sender
-                                  ent_Friend_Elena,            //ID of recipient
-                                  Msg_HiHoneyImHome,   //the message
-                                  (void *) NO_ADDITIONAL_INFO);
+        // Dispatch->DispatchMessage(SEND_MSG_IMMEDIATELY, //time delay
+        //                           pAgent->ID(),        //ID of sender
+        //                           ent_Friend_Elena,            //ID of recipient
+        //                           Msg_HiHoneyImHome,   //the message
+        //                           (void *) NO_ADDITIONAL_INFO);
 
         std::this_thread::sleep_for(std::chrono::milliseconds(500));
         pAgent->ChangeLocation(AgentHouse);
