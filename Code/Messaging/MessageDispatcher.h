@@ -24,7 +24,7 @@ private:
     //of duplicates. Messages are sorted by their dispatch time.
     std::set<Telegram> PriorityQ;
 
-    //this method is utilized by DispatchMessage or DispatchDelayedMessages.
+    //this method is utilized by DispatchMessages or DispatchDelayedMessages.
     //This method calls the message handling member function of the receiving
     //entity, pReceiver, with the newly created telegram
     static void Discharge(BaseGameEntity* pReceiver, const Telegram& msg);
@@ -41,7 +41,7 @@ public:
     static MessageDispatcher* Instance();
 
     //send a message to another agent. Receiving agent is referenced by ID.
-    void DispatchMessage(double  delay,
+    void DispatchMessages(double  delay,
                          int    sender,
                          int    receiver,
                          int    msg,

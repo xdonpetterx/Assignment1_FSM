@@ -38,13 +38,13 @@ void MessageDispatcher::Discharge(BaseGameEntity *pReceiver, const Telegram &msg
     }
 }
 
-//---------------------------- DispatchMessage ---------------------------
+//---------------------------- DispatchMessages ---------------------------
 //
 //  given a message, a receiver, a sender and any time delay , this function
 //  routes the message to the correct agent (if no delay) or stores
 //  in the message queue to be dispatched at the correct time
 //------------------------------------------------------------------------
-void MessageDispatcher::DispatchMessage(double  delay,
+void MessageDispatcher::DispatchMessages(double  delay,
                                         int    sender,
                                         int    receiver,
                                         int    msg,

@@ -278,11 +278,11 @@ void GoHomeAndSleep::Enter(Agent* pAgent)
 #endif
 
         //let the Elena know I'm home - TODO: needs to be fixed later!!
-        // Dispatch->DispatchMessage(SEND_MSG_IMMEDIATELY, //time delay
-        //                           pAgent->ID(),        //ID of sender
-        //                           ent_Friend_Elena,            //ID of recipient
-        //                           Msg_HiHoneyImHome,   //the message
-        //                           (void *) NO_ADDITIONAL_INFO);
+        Dispatch->DispatchMessages(SEND_MSG_IMMEDIATELY, //time delay
+                                  pAgent->ID(),        //ID of sender
+                                  ent_Friend_Elena,            //ID of recipient
+                                  Msg_HiHoneyImHome,   //the message
+                                  (void *) NO_ADDITIONAL_INFO);
 
         std::this_thread::sleep_for(std::chrono::milliseconds(500));
         pAgent->ChangeLocation(AgentHouse);
