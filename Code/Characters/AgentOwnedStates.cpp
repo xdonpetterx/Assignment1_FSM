@@ -271,11 +271,11 @@ void GoHomeAndSleep::Enter(Agent* pAgent)
         << SLEEP.find("enterHome")->second << RESET;
 #endif
 
-        //let the Elena know I'm home - TODO: needs to be fixed later!!
+        //All the characters send a message to Elena when they are home - TODO: needs to be fixed later!!
         Dispatch->DispatchMessages(SEND_MSG_IMMEDIATELY, //time delay
                                   pAgent->ID(),        //ID of sender
                                   ent_Friend_Elena,            //ID of recipient
-                                  Msg_HiHoneyImHome,   //the message
+                                  Msg_WhatsUp,   //the message
                                   (void *) NO_ADDITIONAL_INFO);
 
         std::this_thread::sleep_for(std::chrono::milliseconds(500));
@@ -344,7 +344,7 @@ bool GoHomeAndSleep::OnMessage(Agent* pAgent, const SMS& msg)
 {
     switch(msg.Msg)
     {
-        case Msg_StewReady:
+        case Msg_VideoGames:
 
             std::cout << "\nMessage handled by " << GetNameOfEntity(pAgent->ID())
                  << " at time: " << Clock->GetCurrentTime();
