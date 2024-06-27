@@ -14,7 +14,7 @@ Checklist:
     - [ ] The character must be able to die from an overdose of drink (alcohol)
     - [ ] The character must be able to die from an overdose of work.
 
-- [ ] It must be possible to send a message between several characters with similar lives. 
+- [x] It must be possible to send a message between several characters with similar lives. 
     - [ ] You should be able to meet in the store, when eating / drinking etc. 
     - [ ] The communication that the agents have between each other must take place in the form of a message, they all have access to a telephone with an SMS function. 
     - [ ] The dialogue between agents must be printed out and that a meeting is scheduled at a certain time and in a special place. 
