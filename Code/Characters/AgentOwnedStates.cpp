@@ -241,7 +241,7 @@ void VisitBankAndDepositCash::Exit(Agent* pAgent)
 #endif
 #ifndef _WIN32
     std::cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
-    << DEPOSIT.find("depositing")->second << RESET;
+    << DEPOSIT.find("exitBank")->second << RESET;
 #endif
 }
 
