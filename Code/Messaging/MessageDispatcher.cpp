@@ -4,7 +4,7 @@
 #include <Messaging/CrudeTimer.h>
 #include <Messaging/EntityManager.h>
 #include <Messaging/MessageTypes.h>
-#include <Messaging/Telegram.h>
+#include <Messaging/SMS.h>
 #include <StateMachine/BaseGameEntity.h>
 
 #include <iostream>
@@ -30,10 +30,10 @@ MessageDispatcher* MessageDispatcher::Instance()
 //
 //  see description in header
 //------------------------------------------------------------------------
-void MessageDispatcher::Discharge(BaseGameEntity *pReceiver, const Telegram &msg) {
-    if (!pReceiver->HandleMessage(Telegram()))
+void MessageDispatcher::Discharge(BaseGameEntity *pReceiver, const SMS &msg) {
+    if (!pReceiver->HandleMessage(SMS()))
     {
-        //telegram could not be handled
+        //SMS could not be handled
         std::cout << "Message not handled";
     }
 }
@@ -74,31 +74,31 @@ void MessageDispatcher::DispatchMessages(double  delay,
         return;
     }
 
-    //create the telegram
-    Telegram telegram(0, sender, receiver, msg, ExtraInfo);
+    //create the SMS
+    SMS SMS(0, sender, receiver, msg, ExtraInfo);
 
-    //if there is no delay, route telegram immediately
+    //if there is no delay, route SMS immediately
     if (delay <= 0.0f)
     {
-        std::cout << "\nInstant telegram dispatched at time: " << Clock->GetCurrentTime()
+        std::cout << "\nInstant SMS dispatched at time: " << Clock->GetCurrentTime()
              << " by " << GetNameOfEntity(pSender->ID()) << " for " << GetNameOfEntity(pReceiver->ID())
              << ". Msg is "<< MsgToStr(msg);
 
-        //send the telegram to the recipient
-        Discharge(pReceiver, telegram);
+        //send the SMS to the recipient
+        Discharge(pReceiver, SMS);
     }
 
-        //else calculate the time when the telegram should be dispatched
+        //else calculate the time when the SMS should be dispatched
     else
     {
         double CurrentTime = Clock->GetCurrentTime();
 
-        telegram.DispatchTime = CurrentTime + delay;
+        SMS.DispatchTime = CurrentTime + delay;
 
         //and put it in the queue
-        PriorityQ.insert(telegram);
+        PriorityQ.insert(SMS);
 
-        std::cout << "\nDelayed telegram from " << GetNameOfEntity(pSender->ID()) << " recorded at time "
+        std::cout << "\nDelayed SMS from " << GetNameOfEntity(pSender->ID()) << " recorded at time "
              << Clock->GetCurrentTime() << " for " << GetNameOfEntity(pReceiver->ID())
              << ". Msg is "<< MsgToStr(msg);
 
@@ -108,8 +108,8 @@ void MessageDispatcher::DispatchMessages(double  delay,
 
 //---------------------- DispatchDelayedMessages -------------------------
 //
-//  This function dispatches any telegrams with a timestamp that has
-//  expired. Any dispatched telegrams are removed from the queue
+//  This function dispatches any SMSs with a timestamp that has
+//  expired. Any dispatched SMSs are removed from the queue
 //------------------------------------------------------------------------
 void MessageDispatcher::DispatchDelayedMessages()
 {
@@ -120,24 +120,24 @@ void MessageDispatcher::DispatchDelayedMessages()
     //get current time
     double CurrentTime = Clock->GetCurrentTime();
 
-    //now peek at the queue to see if any telegrams need dispatching.
-    //remove all telegrams from the front of the queue that have gone
+    //now peek at the queue to see if any SMSs need dispatching.
+    //remove all SMSs from the front of the queue that have gone
     //past their sell by date
     while( !PriorityQ.empty() &&
            (PriorityQ.begin()->DispatchTime < CurrentTime) &&
            (PriorityQ.begin()->DispatchTime > 0) )
     {
-        //read the telegram from the front of the queue
-        const Telegram& telegram = *PriorityQ.begin();
+        //read the SMS from the front of the queue
+        const SMS& SMS = *PriorityQ.begin();
 
         //find the recipient
-        BaseGameEntity* pReceiver = EntityMgr->GetEntityFromID(telegram.Receiver);
+        BaseGameEntity* pReceiver = EntityMgr->GetEntityFromID(SMS.Receiver);
 
-        std::cout << "\nQueued telegram ready for dispatch: Sent to "
-             << GetNameOfEntity(pReceiver->ID()) << ". Msg is " << MsgToStr(telegram.Msg);
+        std::cout << "\nQueued SMS ready for dispatch: Sent to "
+             << GetNameOfEntity(pReceiver->ID()) << ". Msg is " << MsgToStr(SMS.Msg);
 
-        //send the telegram to the recipient
-        Discharge(pReceiver, telegram);
+        //send the SMS to the recipient
+        Discharge(pReceiver, SMS);
 
         //remove it from the queue
         PriorityQ.erase(PriorityQ.begin());

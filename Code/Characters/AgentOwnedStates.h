@@ -2,7 +2,7 @@
 #include <StateMachine/State.h>
 
 class Agent;
-struct Telegram;
+struct SMS;
 //------------------------------------------------------------------------
 //
 //  In this state the Agent will walk to a McDonald's and get cash for working.
@@ -30,7 +30,7 @@ public:
 
     void Exit(Agent* Agent) override;
 
-    bool OnMessage(Agent* agent, const Telegram& msg) override;
+    bool OnMessage(Agent* agent, const SMS& msg) override;
 
 };
 
@@ -59,7 +59,7 @@ public:
 
     void Exit(Agent* Agent) override;
 
-    bool OnMessage(Agent* agent, const Telegram& msg) override;
+    bool OnMessage(Agent* agent, const SMS& msg) override;
 };
 
 //------------------------------------------------------------------------
@@ -87,7 +87,7 @@ public:
 
     void Exit(Agent* Agent) override;
 
-    bool OnMessage(Agent* agent, const Telegram& msg) override;
+    bool OnMessage(Agent* agent, const SMS& msg) override;
 };
 
 //------------------------------------------------------------------------
@@ -113,7 +113,7 @@ public:
 
     void Exit(Agent* Agent) override;
 
-    bool OnMessage(Agent* agent, const Telegram& msg) override;
+    bool OnMessage(Agent* agent, const SMS& msg) override;
 };
 
 class ReduceHunger : public State<Agent>
@@ -136,7 +136,7 @@ public:
 
     void Exit(Agent* Agent) override;
 
-    bool OnMessage(Agent* agent, const Telegram& msg) override;
+    bool OnMessage(Agent* agent, const SMS& msg) override;
 };
 
 class ReduceBoredom : public State<Agent>
@@ -159,7 +159,7 @@ public:
 
     void Exit(Agent* Agent) override;
 
-    bool OnMessage(Agent* agent, const Telegram& msg) override;
+    bool OnMessage(Agent* agent, const SMS& msg) override;
 };
 
 class BuyStuff : public State<Agent>
@@ -182,5 +182,5 @@ public:
 
     void Exit(Agent* Agent) override;
 
-    bool OnMessage(Agent* agent, const Telegram& msg) override;
+    bool OnMessage(Agent* agent, const SMS& msg) override;
 };

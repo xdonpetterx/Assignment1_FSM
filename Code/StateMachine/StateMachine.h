@@ -5,7 +5,7 @@
 #include <typeinfo>
 
 #include <StateMachine/State.h>
-#include <Messaging/Telegram.h>
+#include <Messaging/SMS.h>
 
 template <class entity_type>
 class StateMachine
@@ -50,7 +50,7 @@ public:
         if (m_pCurrentState) m_pCurrentState->Execute(m_pOwner);
     }
 
-    [[nodiscard]] bool  HandleMessage(const Telegram& msg)const
+    [[nodiscard]] bool  HandleMessage(const SMS& msg)const
     {
         //first see if the current state is valid and that it can handle
         //the message

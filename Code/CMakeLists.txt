@@ -20,7 +20,7 @@ add_executable(Assignment1_FSM  main.cpp
         "Messaging/MessageDispatcher.cpp"
         "Messaging/MessageDispatcher.h"
         "Messaging/MessageTypes.h"
-        "Messaging/Telegram.h"
+        "Messaging/SMS.h"
 
         "StateMachine/BaseGameEntity.cpp"
         "StateMachine/BaseGameEntity.h"

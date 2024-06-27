@@ -6,7 +6,7 @@
 #include <Messaging/CrudeTimer.h>
 #include <Messaging/MessageDispatcher.h>
 #include <Messaging/MessageTypes.h>
-#include <Messaging/Telegram.h>
+#include <Messaging/SMS.h>
 
 #include <iostream>
 #include <map>
@@ -141,7 +141,7 @@ void Working::Exit(Agent* pAgent)
 #endif
 }
 
-bool Working::OnMessage(Agent* pAgent, const Telegram& msg)
+bool Working::OnMessage(Agent* pAgent, const SMS& msg)
 {
     //send msg to global message handler
     return false;
@@ -245,7 +245,7 @@ void VisitBankAndDepositCash::Exit(Agent* pAgent)
 #endif
 }
 
-bool VisitBankAndDepositCash::OnMessage(Agent* pAgent, const Telegram& msg)
+bool VisitBankAndDepositCash::OnMessage(Agent* pAgent, const SMS& msg)
 {
     //send msg to global message handler
     return false;
@@ -346,7 +346,7 @@ void GoHomeAndSleep::Exit(Agent* pAgent)
 #endif
 }
 
-bool GoHomeAndSleep::OnMessage(Agent* pAgent, const Telegram& msg)
+bool GoHomeAndSleep::OnMessage(Agent* pAgent, const SMS& msg)
 {
     switch(msg.Msg)
     {
@@ -442,7 +442,7 @@ void QuenchThirst::Exit(Agent* pAgent)
 #endif
 }
 
-bool QuenchThirst::OnMessage(Agent* pAgent, const Telegram& msg)
+bool QuenchThirst::OnMessage(Agent* pAgent, const SMS& msg)
 {
     //send msg to global message handler
     return false;
@@ -527,7 +527,7 @@ void ReduceHunger::Exit(Agent* pAgent)
 #endif
 }
 
-bool ReduceHunger::OnMessage(Agent* pAgent, const Telegram& msg)
+bool ReduceHunger::OnMessage(Agent* pAgent, const SMS& msg)
 {
     //send msg to global message handler
     return false;
@@ -610,7 +610,7 @@ void ReduceBoredom::Exit(Agent* pAgent)
 #endif
 }
 
-bool ReduceBoredom::OnMessage(Agent* pAgent, const Telegram& msg)
+bool ReduceBoredom::OnMessage(Agent* pAgent, const SMS& msg)
 {
     //send msg to global message handler
     return false;
@@ -693,7 +693,7 @@ void BuyStuff::Exit(Agent* pAgent)
 #endif
 }
 
-bool BuyStuff::OnMessage(Agent* pAgent, const Telegram& msg)
+bool BuyStuff::OnMessage(Agent* pAgent, const SMS& msg)
 {
     //send msg to global message handler
     return false;

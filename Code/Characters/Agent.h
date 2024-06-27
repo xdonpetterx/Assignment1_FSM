@@ -10,7 +10,7 @@
 
 template <class entity_type> class State; //pre-fixed with "template <class entity_type> " for vs8 compatibility
 
-struct Telegram;
+struct SMS;
 
 //the amount of cash an Agent must have before he feels comfortable
 const int ComfortLevel       = 5;
@@ -67,7 +67,7 @@ public:
     //this must be implemented
     void Update() override;
 
-    bool  HandleMessage(const Telegram& msg) override;
+    bool  HandleMessage(const SMS& msg) override;
     [[nodiscard]] StateMachine<Agent>*  GetFSM()const{return m_pStateMachine;}
 
 

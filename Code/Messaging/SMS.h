@@ -4,12 +4,12 @@
 #include <cmath>
 
 
-struct Telegram
+struct SMS
 {
-    //the entity that sent this telegram
+    //the entity that sent this SMS
     int          Sender;
 
-    //the entity that is to receive this telegram
+    //the entity that is to receive this SMS
     int          Receiver;
 
     //the message itself. These are all enumerated in the file
@@ -25,14 +25,14 @@ struct Telegram
     void*        ExtraInfo;
 
 
-    Telegram():DispatchTime(-1),
+    SMS():DispatchTime(-1),
                Sender(-1),
                Receiver(-1),
                Msg(-1)
     {}
 
 
-    Telegram(double time,
+    SMS(double time,
              int    sender,
              int    receiver,
              int    msg,
@@ -46,14 +46,14 @@ struct Telegram
 };
 
 
-//these telegrams will be stored in a priority queue. Therefore the >
-//operator needs to be overloaded so that the PQ can sort the telegrams
+//these SMSs will be stored in a priority queue. Therefore the >
+//operator needs to be overloaded so that the PQ can sort the SMSs
 //by time priority. Note how the times must be smaller than
-//SmallestDelay apart before two Telegrams are considered unique.
+//SmallestDelay apart before two SMSs are considered unique.
 const double SmallestDelay = 0.25;
 
 
-inline bool operator==(const Telegram& t1, const Telegram& t2)
+inline bool operator==(const SMS& t1, const SMS& t2)
 {
     return ( fabs(t1.DispatchTime-t2.DispatchTime) < SmallestDelay) &&
            (t1.Sender == t2.Sender)        &&
@@ -61,7 +61,7 @@ inline bool operator==(const Telegram& t1, const Telegram& t2)
            (t1.Msg == t2.Msg);
 }
 
-inline bool operator<(const Telegram& t1, const Telegram& t2)
+inline bool operator<(const SMS& t1, const SMS& t2)
 {
     if (t1 == t2)
     {
@@ -74,7 +74,7 @@ inline bool operator<(const Telegram& t1, const Telegram& t2)
     }
 }
 
-inline std::ostream& operator<<(std::ostream& os, const Telegram& t)
+inline std::ostream& operator<<(std::ostream& os, const SMS& t)
 {
     os << "time: " << t.DispatchTime << "  Sender: " << t.Sender
        << "   Receiver: " << t.Receiver << "   Msg: " << t.Msg;
@@ -82,7 +82,7 @@ inline std::ostream& operator<<(std::ostream& os, const Telegram& t)
     return os;
 }
 
-//handy helper function for dereferencing the ExtraInfo field of the Telegram
+//handy helper function for dereferencing the ExtraInfo field of the SMS
 //to the required type.
 template <class T>
 inline T DereferenceToType(void* p)

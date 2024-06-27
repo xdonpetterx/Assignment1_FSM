@@ -1,6 +1,6 @@
 #pragma once
 
-struct Telegram;
+struct SMS;
 
 template <class entity_type>
 class State
@@ -17,5 +17,5 @@ public:
 
     //this executes if the agent receives a message from the
     //message dispatcher
-    virtual bool OnMessage(entity_type*, const Telegram&)=0;
+    virtual bool OnMessage(entity_type*, const SMS&)=0;
 };

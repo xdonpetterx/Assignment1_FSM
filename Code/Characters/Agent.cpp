@@ -1,6 +1,6 @@
 #include <Characters/Agent.h>
 
-bool Agent::HandleMessage(const Telegram& msg)
+bool Agent::HandleMessage(const SMS& msg)
 {
     return m_pStateMachine->HandleMessage(msg);
 }
