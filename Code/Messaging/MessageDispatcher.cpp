@@ -8,13 +8,6 @@
 #include <StateMachine/BaseGameEntity.h>
 
 #include <iostream>
-using std::set;
-
-#ifdef TEXTOUTPUT
-#include <fstream>
-extern std::ofstream os;
-#define cout os
-#endif
 
 //------------------------------ Instance -------------------------------------
 
