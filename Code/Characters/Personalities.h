@@ -13,55 +13,63 @@
 
 std::multimap<std::string, std::string> setWork(Agent* pAgent)
 {
-    std::multimap<std::string, std::string> WORK, WORK1, WORK2;
-    if (GetNameOfEntity(pAgent->ID()) == "Agent Charlie"){
-        WORK1.insert(std::make_pair("enterWork","Walkin' to the McDonalds"));
-        WORK2.insert(std::make_pair("enterWork","Walkin' to the Coal Mine"));
-        WORK1.insert(std::make_pair("working","Flippin' a burger, getting cash"));
-        WORK2.insert(std::make_pair("working","Minin' coal, getting cash"));
-        WORK1.insert(std::make_pair("exitWork","I'm leavin' McDonald's with my pockets full of cash"));
-        WORK2.insert(std::make_pair("exitWork","I'm leavin' the Coal Mine with my pockets full of cash"));
+    std::multimap<std::string, std::string> WORK;
+    if ((GetNameOfEntity(pAgent->ID()) == "Agent Charlie") and (pAgent->Location() == charlieCoalMine)) {
+        WORK.insert(std::make_pair("enterWork","Walkin' to the Coal Mine"));
+        WORK.insert(std::make_pair("working","Minin' coal, getting cash"));
+        WORK.insert(std::make_pair("exitWork","I'm leavin' the Coal Mine with my pockets full of cash"));
     }
-    else if (GetNameOfEntity(pAgent->ID()) == "Friend Elena"){
-        WORK1.insert(std::make_pair("enterWork","Taking a Uber to the Power Plant"));
-        WORK2.insert(std::make_pair("enterWork","Taking a Uber to the Chemical Factory"));
-        WORK1.insert(std::make_pair("working","Working at the Power Plant"));
-        WORK2.insert(std::make_pair("working","Mixing chemicals"));
-        WORK1.insert(std::make_pair("exitWork","Enough money earned for now. Leaving the Power Plant"));
-        WORK2.insert(std::make_pair("exitWork","Enough money earned for now. Leaving the Chemical Factory"));
+    else if ((GetNameOfEntity(pAgent->ID()) == "Agent Charlie") and (pAgent->Location() == charlieMcDonalds)) {
+        WORK.insert(std::make_pair("enterWork","Walkin' to the McDonalds"));
+        WORK.insert(std::make_pair("working","Flippin' a burger, getting cash"));
+        WORK.insert(std::make_pair("exitWork","I'm leavin' McDonald's with my pockets full of cash"));
     }
-    else if (GetNameOfEntity(pAgent->ID()) == "Friend Jonny"){
-        WORK1.insert(std::make_pair("enterWork","Riding a bike to the Hospital"));
-        WORK2.insert(std::make_pair("enterWork","Riding a bike to the Car Factory"));
-        WORK1.insert(std::make_pair("working","Saving the World, one person at a time"));
-        WORK2.insert(std::make_pair("working","Fixing cars"));
-        WORK1.insert(std::make_pair("exitWork","Finished work. I'm leaving the Hospital"));
-        WORK2.insert(std::make_pair("exitWork","Finished work. I'm leaving the Car Factory"));
+    else if ((GetNameOfEntity(pAgent->ID()) == "Friend Elena") and (pAgent->Location() == elenaPowerPlant)){
+        WORK.insert(std::make_pair("enterWork","Taking a Uber to the Power Plant"));
+        WORK.insert(std::make_pair("working","Working at the Power Plant"));
+        WORK.insert(std::make_pair("exitWork","Enough money earned for now. Leaving the Power Plant"));
     }
-    else if (GetNameOfEntity(pAgent->ID()) == "Friend Mike"){
-        WORK1.insert(std::make_pair("enterWork","Driving to the Pizzeria"));
-        WORK2.insert(std::make_pair("enterWork","Driving to the Prison"));
-        WORK1.insert(std::make_pair("working","Baking pizzas"));
-        WORK2.insert(std::make_pair("working","Back to the Prison, this time as a guard"));
-        WORK1.insert(std::make_pair("exitWork","Let's call it a day. I'm leaving the Pizzeria"));
-        WORK2.insert(std::make_pair("exitWork","Let's call it a day. I'm leaving the Prison"));
+    else if ((GetNameOfEntity(pAgent->ID()) == "Friend Elena") and (pAgent->Location() == elenaChemicalFactory)){
+        WORK.insert(std::make_pair("enterWork","Taking a Uber to the Chemical Factory"));
+        WORK.insert(std::make_pair("working","Mixing chemicals"));
+        WORK.insert(std::make_pair("exitWork","Enough money earned for now. Leaving the Chemical Factory"));
+    }
+    else if ((GetNameOfEntity(pAgent->ID()) == "Friend Jonny") and (pAgent->Location() == jonnyHospital)){
+        WORK.insert(std::make_pair("enterWork","Riding a bike to the Hospital"));
+        WORK.insert(std::make_pair("working","Saving the World, one person at a time"));
+        WORK.insert(std::make_pair("exitWork","Finished work. I'm leaving the Hospital"));
+    }
+    else if ((GetNameOfEntity(pAgent->ID()) == "Friend Jonny") and (pAgent->Location() == jonnyCarFactory)){
+        WORK.insert(std::make_pair("enterWork","Riding a bike to the Car Factory"));
+        WORK.insert(std::make_pair("working","Fixing cars"));
+        WORK.insert(std::make_pair("exitWork","Finished work. I'm leaving the Car Factory"));
+    }
+    else if ((GetNameOfEntity(pAgent->ID()) == "Friend Mike") and (pAgent->Location() == mikePizzeria)){
+        WORK.insert(std::make_pair("enterWork","Driving to the Pizzeria"));
+        WORK.insert(std::make_pair("working","Baking pizzas"));
+        WORK.insert(std::make_pair("exitWork","Let's call it a day. I'm leaving the Pizzeria"));
+    }
+    else if ((GetNameOfEntity(pAgent->ID()) == "Friend Mike") and (pAgent->Location() == mikePrison)){
+        WORK.insert(std::make_pair("enterWork","Driving to the Prison"));
+        WORK.insert(std::make_pair("working","Back to the Prison, this time as a guard"));
+        WORK.insert(std::make_pair("exitWork","Let's call it a day. I'm leaving the Prison"));
     }
     else{
-        WORK1.insert(std::make_pair("enterWork","Going to work"));
-        WORK2.insert(std::make_pair("enterWork","Going to work"));
-        WORK1.insert(std::make_pair("working","Working"));
-        WORK2.insert(std::make_pair("working","Working"));
-        WORK1.insert(std::make_pair("exitWork","I'm leaving work"));
-        WORK2.insert(std::make_pair("exitWork","I'm leaving work"));
+        WORK.insert(std::make_pair("enterWork","Going to work"));
+        WORK.insert(std::make_pair("enterWork","Going to work"));
+        WORK.insert(std::make_pair("working","Working"));
+        WORK.insert(std::make_pair("working","Working"));
+        WORK.insert(std::make_pair("exitWork","I'm leaving work"));
+        WORK.insert(std::make_pair("exitWork","I'm leaving work"));
     }
-    switch (RandomInteger(0, 1)) {
-        case 0:
-            WORK = WORK1;
-            break;
-        case 1:
-            WORK = WORK2;
-            break;
-    }
+//    switch (RandomInteger(0, 1)) {
+//        case 0:
+//            WORK = WORK1;
+//            break;
+//        case 1:
+//            WORK = WORK2;
+//            break;
+//    }
     return WORK;
 }
 
