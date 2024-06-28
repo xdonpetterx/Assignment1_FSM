@@ -35,25 +35,29 @@ Working* Working::Instance()
 
 void Working::Enter(Agent* pAgent)
 {
-    //if the Agent is not already located at McDonald's, he must
-    //change location to the gold mine
-    if (pAgent->Location() != charlieMcDonalds or charlieCoalMine)
-    {
-        WORD COLOR = setColor(pAgent);
-        std::multimap<std::string, std::string> WORK = setWork(pAgent);
+    /*The best fix is probably to change the workplace here and in Personalities.h get the agent location*/
+    if ((GetNameOfEntity(pAgent->ID()) == "Agent Charlie") and (pAgent->Location()) != charlieMcDonalds or charlieCoalMine)
+        pAgent->ChangeLocation(charlieMcDonalds); //TODO: Needs to change to one of the two workplaces
+    if ((GetNameOfEntity(pAgent->ID()) == "Friend Elena") and (pAgent->Location()) != elenaPowerPlant or elenaChemicalFactory)
+        pAgent->ChangeLocation(elenaPowerPlant); //TODO: Needs to change to one of the two workplaces
+    if ((GetNameOfEntity(pAgent->ID()) == "Friend Jonny") and (pAgent->Location()) != jonnyCarFactory or jonnyHospital)
+        pAgent->ChangeLocation(jonnyHospital); //TODO: Needs to change to one of the two workplaces
+    if ((GetNameOfEntity(pAgent->ID()) == "Friend Mike") and (pAgent->Location()) != mikePizzeria or mikePrison)
+        pAgent->ChangeLocation(mikePizzeria); //TODO: Needs to change to one of the two workplaces
+
+    WORD COLOR = setColor(pAgent);
+    std::multimap<std::string, std::string> WORK = setWork(pAgent);
 #ifdef _WIN32
-        HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-        SetConsoleTextAttribute(hConsole, COLOR);
-        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << WORK.find("enterWork")->second;
-        SetConsoleTextAttribute(hConsole, RESET);
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(hConsole, COLOR);
+    std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << WORK.find("enterWork")->second;
+    SetConsoleTextAttribute(hConsole, RESET);
 #endif
 #ifndef _WIN32
-        std::cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
-        << WORK.find("enterWork")->second << RESET;
+    std::cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
+    << WORK.find("enterWork")->second << RESET;
 #endif
-        std::this_thread::sleep_for(std::chrono::milliseconds(500));
-        pAgent->ChangeLocation(charlieMcDonalds);
-    }
+    std::this_thread::sleep_for(std::chrono::milliseconds(500));
 }
 
 
