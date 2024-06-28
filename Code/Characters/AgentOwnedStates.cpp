@@ -35,9 +35,9 @@ Working* Working::Instance()
 
 void Working::Enter(Agent* pAgent)
 {
-    //if the Agent is not already located at McDonalds, he must
+    //if the Agent is not already located at McDonald's, he must
     //change location to the gold mine
-    if (pAgent->Location() != McDonalds)
+    if (pAgent->Location() != charlieMcDonalds or charlieCoalMine)
     {
         WORD COLOR = setColor(pAgent);
         std::multimap<std::string, std::string> WORK = setWork(pAgent);
@@ -52,7 +52,7 @@ void Working::Enter(Agent* pAgent)
         << WORK.find("enterWork")->second << RESET;
 #endif
         std::this_thread::sleep_for(std::chrono::milliseconds(500));
-        pAgent->ChangeLocation(McDonalds);
+        pAgent->ChangeLocation(charlieMcDonalds);
     }
 }
 

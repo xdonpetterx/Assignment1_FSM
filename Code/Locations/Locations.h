@@ -5,17 +5,17 @@ enum location_type
     AgentHouse,
     //WORKPLACES
     //Charlie
-    McDonalds,
-    CoalMine,
+    charlieMcDonalds,
+    charlieCoalMine,
     //Elena
-    PowerPlant,
-    ChemicalFactory,
+    elenaPowerPlant,
+    elenaChemicalFactory,
     //Jonny
-    Hospital,
-    CarFactory,
+    jonnyHospital,
+    jonnyCarFactory,
     //Mike
-    Pizzeria,
-    Prison,
+    mikePizzeria,
+    mikePrison,
     //OTHER_LOCATIONS
     Bank,
     Bar,
