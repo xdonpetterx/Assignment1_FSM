@@ -84,12 +84,13 @@ void Working::Enter(Agent* pAgent)
 #ifdef _WIN32
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(hConsole, COLOR);
-    std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << WORK.find("enterWork")->second;
+    std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << WORK.find("enterWork")->second
+    << " - Location number: " << pAgent->Location();
     SetConsoleTextAttribute(hConsole, RESET);
 #endif
 #ifndef _WIN32
     std::cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
-    << WORK.find("enterWork")->second << pAgent->Location() << RESET;
+    << WORK.find("enterWork")->second << " - Location number: " << pAgent->Location() << RESET;
 #endif
     std::this_thread::sleep_for(std::chrono::milliseconds(500));
 }
@@ -110,12 +111,13 @@ void Working::Execute(Agent* pAgent)
 #ifdef _WIN32
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, COLOR);
-        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << WORK.find("working")->second;
+        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << WORK.find("working")->second
+        << " - Location number: " << pAgent->Location();
         SetConsoleTextAttribute(hConsole, RESET);
 #endif
 #ifndef _WIN32
     std::cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
-    << WORK.find("working")->second << RESET;
+    << WORK.find("working")->second << " - Location number: " << pAgent->Location() << RESET;
 #endif
 
     //if enough cash earned, go and put it in the Bank
@@ -163,13 +165,13 @@ void Working::Exit(Agent* pAgent)
 #ifdef _WIN32
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, COLOR);
-        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": "
-             << WORK.find("exitWork")->second;
+        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << WORK.find("exitWork")->second
+        << " - Location number: " << pAgent->Location();
         SetConsoleTextAttribute(hConsole, RESET);
 #endif
 #ifndef _WIN32
     std::cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
-    << WORK.find("exitWork")->second << RESET;
+    << WORK.find("exitWork")->second << " - Location number: " << pAgent->Location() << RESET;
 #endif
 }
 
@@ -198,12 +200,13 @@ void VisitBankAndDepositCash::Enter(Agent* pAgent)
 #ifdef _WIN32
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, COLOR);
-        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << DEPOSIT.find("enterBank")->second;
+        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << DEPOSIT.find("enterBank")->second
+        << " - Location number: " << pAgent->Location();
         SetConsoleTextAttribute(hConsole, RESET);
 #endif
 #ifndef _WIN32
         std::cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
-        << DEPOSIT.find("enterBank")->second << RESET;
+        << DEPOSIT.find("enterBank")->second << " - Location number: " << pAgent->Location() << RESET;
 #endif
         std::this_thread::sleep_for(std::chrono::milliseconds(500));
         pAgent->ChangeLocation(Bank);
@@ -224,12 +227,13 @@ void VisitBankAndDepositCash::Execute(Agent* pAgent)
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, COLOR);
         std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": "
-        << DEPOSIT.find("depositing")->second << pAgent->Wealth();
+        << DEPOSIT.find("depositing")->second << pAgent->Wealth()
+        << " - Location number: " << pAgent->Location();
         SetConsoleTextAttribute(hConsole, RESET);
 #endif
 #ifndef _WIN32
     std::cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
-    << DEPOSIT.find("depositing")->second << pAgent->Wealth() << RESET;
+    << DEPOSIT.find("depositing")->second << pAgent->Wealth() << " - Location number: " << pAgent->Location() << RESET;
 #endif
 
     //wealthy enough to have a well earned rest?
@@ -239,13 +243,13 @@ void VisitBankAndDepositCash::Execute(Agent* pAgent)
 #ifdef _WIN32
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, COLOR);
-        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": "
-             << DEPOSIT.find("ifRichEnough")->second;
+        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << DEPOSIT.find("ifRichEnough")->second
+        << " - Location number: " << pAgent->Location();
         SetConsoleTextAttribute(hConsole, RESET);
 #endif
 #ifndef _WIN32
         std::cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
-             << DEPOSIT.find("ifRichEnough")->second << RESET;
+             << DEPOSIT.find("ifRichEnough")->second << " - Location number: " << pAgent->Location() << RESET;
 #endif
         std::this_thread::sleep_for(std::chrono::milliseconds(500));
         pAgent->GetFSM()->ChangeState(GoHomeAndSleep::Instance());
@@ -268,12 +272,13 @@ void VisitBankAndDepositCash::Exit(Agent* pAgent)
 #ifdef _WIN32
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, COLOR);
-        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << DEPOSIT.find("ifRichEnough")->second;
+        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << DEPOSIT.find("ifRichEnough")->second
+        << " - Location number: " << pAgent->Location();
         SetConsoleTextAttribute(hConsole, RESET);
 #endif
 #ifndef _WIN32
     std::cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
-    << DEPOSIT.find("exitBank")->second << RESET;
+    << DEPOSIT.find("exitBank")->second << " - Location number: " << pAgent->Location() << RESET;
 #endif
 }
 
@@ -301,12 +306,13 @@ void GoHomeAndSleep::Enter(Agent* pAgent)
 #ifdef _WIN32
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, COLOR);
-        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << SLEEP.find("enterHome")->second;
+        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << SLEEP.find("enterHome")->second
+        << " - Location number: " << pAgent->Location();
         SetConsoleTextAttribute(hConsole, RESET);
 #endif
 #ifndef _WIN32
         std::cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
-        << SLEEP.find("enterHome")->second << RESET;
+        << SLEEP.find("enterHome")->second << " - Location number: " << pAgent->Location() << RESET;
 #endif
 
         //All the characters send a message to Elena when they are home - TODO: needs to be fixed later!!
@@ -331,13 +337,13 @@ void GoHomeAndSleep::Execute(Agent* pAgent)
 #ifdef _WIN32
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, COLOR);
-        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": "
-             << SLEEP.find("notFatigued")->second;
+        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << SLEEP.find("notFatigued")->second
+        << " - Location number: " << pAgent->Location();
         SetConsoleTextAttribute(hConsole, RESET);
 #endif
 #ifndef _WIN32
         std::cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
-             << SLEEP.find("notFatigued")->second << RESET;
+             << SLEEP.find("notFatigued")->second << " - Location number: " << pAgent->Location() << RESET;
 #endif
         std::this_thread::sleep_for(std::chrono::milliseconds(500));
         pAgent->GetFSM()->ChangeState(Working::Instance());
@@ -353,12 +359,13 @@ void GoHomeAndSleep::Execute(Agent* pAgent)
 #ifdef _WIN32
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, COLOR);
-        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << SLEEP.find("sleeping")->second;
+        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << SLEEP.find("sleeping")->second
+        << " - Location number: " << pAgent->Location();
         SetConsoleTextAttribute(hConsole, RESET);
 #endif
 #ifndef _WIN32
         std::cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
-             << SLEEP.find("sleeping")->second << RESET;
+             << SLEEP.find("sleeping")->second << " - Location number: " << pAgent->Location() << RESET;
 #endif
     }
 }
@@ -370,11 +377,13 @@ void GoHomeAndSleep::Exit(Agent* pAgent)
 #ifdef _WIN32
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, COLOR);
-        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << SLEEP.find("exitHome")->second;
+        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << SLEEP.find("exitHome")->second
+        << " - Location number: " << pAgent->Location();
         SetConsoleTextAttribute(hConsole, RESET);
 #endif
 #ifndef _WIN32
-    std::cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": " << SLEEP.find("exitHome")->second << RESET;
+    std::cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
+        << SLEEP.find("exitHome")->second << " - Location number: " << pAgent->Location() << RESET;
 #endif
 }
 
@@ -388,7 +397,7 @@ bool GoHomeAndSleep::OnMessage(Agent* pAgent, const SMS& msg)
                  << " at time: " << Clock->GetCurrentTime();
 
             std::cout << "\n" << GetNameOfEntity(pAgent->ID())
-                 << ": Okay Hun, ahm a comin'!";
+                 << ": Sure, sounds like a great idea!";
 
             //pAgent->GetFSM()->ChangeState(EatStew::Instance());
             pAgent->GetFSM()->ChangeState(ReduceHunger::Instance());
@@ -421,13 +430,13 @@ void QuenchThirst::Enter(Agent* pAgent)
 #ifdef _WIN32
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, COLOR);
-        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": "
-             << DRINK.find("enterBar")->second;
+        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << DRINK.find("enterBar")->second
+        << " - Location number: " << pAgent->Location();
         SetConsoleTextAttribute(hConsole, RESET);
 #endif
 #ifndef _WIN32
         std::cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
-             << DRINK.find("enterBar")->second << RESET;
+             << DRINK.find("enterBar")->second << " - Location number: " << pAgent->Location() << RESET;
 #endif
     }
 }
@@ -443,11 +452,13 @@ void QuenchThirst::Execute(Agent* pAgent)
 #ifdef _WIN32
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, COLOR);
-        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << DRINK.find("drinking")->second;
+        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << DRINK.find("drinking")->second
+        << " - Location number: " << pAgent->Location();
         SetConsoleTextAttribute(hConsole, RESET);
 #endif
 #ifndef _WIN32
-        std::cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": " << DRINK.find("drinking")->second << RESET;
+        std::cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
+            << DRINK.find("drinking")->second << " - Location number: " << pAgent->Location() << RESET;
 #endif
         std::this_thread::sleep_for(std::chrono::milliseconds(500));
         pAgent->GetFSM()->ChangeState(Working::Instance());
@@ -466,11 +477,13 @@ void QuenchThirst::Exit(Agent* pAgent)
 #ifdef _WIN32
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, COLOR);
-        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << DRINK.find("exitBar")->second;
+        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << DRINK.find("exitBar")->second
+        << " - Location number: " << pAgent->Location();
         SetConsoleTextAttribute(hConsole, RESET);
 #endif
 #ifndef _WIN32
-    std::cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": " << DRINK.find("exitBar")->second << RESET;
+    std::cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
+        << DRINK.find("exitBar")->second << " - Location number: " << pAgent->Location() << RESET;
 #endif
 }
 
@@ -503,13 +516,13 @@ void ReduceHunger::Enter(Agent* pAgent)
 #ifdef _WIN32
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, COLOR);
-        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": "
-             << EAT.find(enterBar)->second;
+        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << EAT.find(enterBar)->second
+        << " - Location number: " << pAgent->Location();
         SetConsoleTextAttribute(hConsole, RESET);
 #endif
 #ifndef _WIN32
         std::cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
-             << EAT.find(enterBar)->second << RESET;
+             << EAT.find(enterBar)->second << " - Location number: " << pAgent->Location() << RESET;
 #endif
     }
 }
@@ -525,13 +538,13 @@ void ReduceHunger::Execute(Agent* pAgent)
 #ifdef _WIN32
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, COLOR);
-        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": "
-             << EAT.find("eating")->second;
+        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << EAT.find("eating")->second
+        << " - Location number: " << pAgent->Location();
         SetConsoleTextAttribute(hConsole, RESET);
 #endif
 #ifndef _WIN32
         std::cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
-             << EAT.find("eating")->second << RESET;
+             << EAT.find("eating")->second << " - Location number: " << pAgent->Location() << RESET;
 #endif
         std::this_thread::sleep_for(std::chrono::milliseconds(500));
         pAgent->GetFSM()->ChangeState(Working::Instance());
@@ -550,12 +563,13 @@ void ReduceHunger::Exit(Agent* pAgent)
 #ifdef _WIN32
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, COLOR);
-        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << EAT.find("exitBar")->second;
+        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << EAT.find("exitBar")->second
+        << " - Location number: " << pAgent->Location();
         SetConsoleTextAttribute(hConsole, RESET);
 #endif
 #ifndef _WIN32
     std::cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
-         << EAT.find("exitBar")->second << RESET;
+         << EAT.find("exitBar")->second << " - Location number: " << pAgent->Location() << RESET;
 #endif
 }
 
@@ -587,13 +601,13 @@ void ReduceBoredom::Enter(Agent* pAgent)
 #ifdef _WIN32
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, COLOR);
-        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": "
-             << MEET.find("enterBar")->second;
+        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << MEET.find("enterBar")->second
+        << " - Location number: " << pAgent->Location();
         SetConsoleTextAttribute(hConsole, RESET);
 #endif
 #ifndef _WIN32
         std::cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
-             << MEET.find("enterBar")->second << RESET;
+             << MEET.find("enterBar")->second << " - Location number: " << pAgent->Location() << RESET;
 #endif
     }
 }
@@ -609,12 +623,13 @@ void ReduceBoredom::Execute(Agent* pAgent)
 #ifdef _WIN32
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, COLOR);
-        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << MEET.find("atBar")->second;
+        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << MEET.find("atBar")->second
+        << " - Location number: " << pAgent->Location();
         SetConsoleTextAttribute(hConsole, RESET);
 #endif
 #ifndef _WIN32
         std::cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
-             << MEET.find("atBar")->second << RESET;
+             << MEET.find("atBar")->second << " - Location number: " << pAgent->Location() << RESET;
 #endif
         std::this_thread::sleep_for(std::chrono::milliseconds(500));
         pAgent->GetFSM()->ChangeState(Working::Instance());
@@ -633,12 +648,13 @@ void ReduceBoredom::Exit(Agent* pAgent)
 #ifdef _WIN32
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, COLOR);
-        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << MEET.find("exitBar")->second;
+        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << MEET.find("exitBar")->second
+        << " - Location number: " << pAgent->Location();
         SetConsoleTextAttribute(hConsole, RESET);
 #endif
 #ifndef _WIN32
     std::cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
-         << MEET.find("exitBar")->second << RESET;
+         << MEET.find("exitBar")->second << " - Location number: " << pAgent->Location() << RESET;
 #endif
 }
 
@@ -670,13 +686,13 @@ void BuyStuff::Enter(Agent* pAgent)
 #ifdef _WIN32
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, COLOR);
-        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": "
-             << SHOP.find("enterWalmart")->second;
+        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << SHOP.find("enterWalmart")->second
+        << " - Location number: " << pAgent->Location();
         SetConsoleTextAttribute(hConsole, RESET);
 #endif
 #ifndef _WIN32
         std::cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
-             << SHOP.find("enterWalmart")->second << RESET;
+             << SHOP.find("enterWalmart")->second << " - Location number: " << pAgent->Location() << RESET;
 #endif
     }
 }
@@ -692,12 +708,13 @@ void BuyStuff::Execute(Agent* pAgent)
 #ifdef _WIN32
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, COLOR);
-        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << SHOP.find("atWalmart")->second;
+        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << SHOP.find("atWalmart")->second
+        << " - Location number: " << pAgent->Location();
         SetConsoleTextAttribute(hConsole, RESET);
 #endif
 #ifndef _WIN32
         std::cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
-        << SHOP.find("atWalmart")->second << RESET;
+        << SHOP.find("atWalmart")->second << " - Location number: " << pAgent->Location() << RESET;
 #endif
         std::this_thread::sleep_for(std::chrono::milliseconds(500));
         pAgent->GetFSM()->ChangeState(Working::Instance());
@@ -716,12 +733,13 @@ void BuyStuff::Exit(Agent* pAgent)
 #ifdef _WIN32
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, COLOR);
-        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << SHOP.find("exitWalmart")->second;
+        std::cout << "\n" << GetNameOfEntity(pAgent->ID()) << ": " << SHOP.find("exitWalmart")->second
+        << " - Location number: " << pAgent->Location();
         SetConsoleTextAttribute(hConsole, RESET);
 #endif
 #ifndef _WIN32
     std::cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
-    << SHOP.find("exitWalmart")->second << RESET;
+    << SHOP.find("exitWalmart")->second << " - Location number: " << pAgent->Location() << RESET;
 #endif
 }
 
