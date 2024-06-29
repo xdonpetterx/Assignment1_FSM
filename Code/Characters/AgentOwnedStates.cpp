@@ -43,28 +43,28 @@ void Working::Enter(Agent* pAgent)
     }
 
     /*The best fix is probably to change the workplace here and in Personalities.h get the agent location*/
-    if ((GetNameOfEntity(pAgent->ID()) == "Agent Charlie") and (pAgent->Location()) != charlieMcDonalds or charlieCoalMine)
+    if ((GetNameOfEntity(pAgent->ID()) == "Agent Charlie") and (pAgent->Location()) != (charlieMcDonalds or charlieCoalMine))
     {
         if (RANDOMWORK == WORK1 )
             pAgent->ChangeLocation(charlieMcDonalds); //TODO: Needs to change to one of the two workplaces
         if (RANDOMWORK == WORK2 )
             pAgent->ChangeLocation(charlieCoalMine); //TODO: Needs to change to one of the two workplaces
     }
-    if ((GetNameOfEntity(pAgent->ID()) == "Friend Elena") and (pAgent->Location()) != elenaPowerPlant or elenaChemicalFactory)
+    if ((GetNameOfEntity(pAgent->ID()) == "Friend Elena") and (pAgent->Location()) != (elenaPowerPlant or elenaChemicalFactory))
     {
         if (RANDOMWORK == WORK1 )
             pAgent->ChangeLocation(elenaPowerPlant); //TODO: Needs to change to one of the two workplaces
         if (RANDOMWORK == WORK2 )
             pAgent->ChangeLocation(elenaChemicalFactory); //TODO: Needs to change to one of the two workplaces
     }
-    if ((GetNameOfEntity(pAgent->ID()) == "Friend Jonny") and (pAgent->Location()) != jonnyCarFactory or jonnyHospital)
+    if ((GetNameOfEntity(pAgent->ID()) == "Friend Jonny") and (pAgent->Location()) != (jonnyCarFactory or jonnyHospital))
     {
         if (RANDOMWORK == WORK1 )
             pAgent->ChangeLocation(jonnyHospital); //TODO: Needs to change to one of the two workplaces
         if (RANDOMWORK == WORK2 )
             pAgent->ChangeLocation(jonnyCarFactory); //TODO: Needs to change to one of the two workplaces
     }
-    if ((GetNameOfEntity(pAgent->ID()) == "Friend Mike") and (pAgent->Location()) != mikePizzeria or mikePrison)
+    if ((GetNameOfEntity(pAgent->ID()) == "Friend Mike") and (pAgent->Location()) != (mikePizzeria or mikePrison))
     {
         if (RANDOMWORK == WORK1 )
             pAgent->ChangeLocation(mikePizzeria); //TODO: Needs to change to one of the two workplaces
@@ -81,7 +81,7 @@ void Working::Enter(Agent* pAgent)
 #endif
 #ifndef _WIN32
     std::cout << "\n" << COLOR << GetNameOfEntity(pAgent->ID()) << ": "
-    << WORK.find("enterWork")->second << RESET;
+    << WORK.find("enterWork")->second << pAgent->Location() << RESET;
 #endif
     std::this_thread::sleep_for(std::chrono::milliseconds(500));
 }
