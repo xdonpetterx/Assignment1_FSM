@@ -32,17 +32,13 @@ Working* Working::Instance()
 
 void Working::Enter(Agent* pAgent)
 {
-    /* TODO: This gives random workplaces but it is not true random. It is always the same.
-     * TODO: For Charlie it is always WORK2 (Workplace 2). For Elena it is always WORK1 (Workplace 3).
-     * TODO: For Jonny it is always WORK1 (Workplace 5). For Mike it is always WORK1 (Workplace 7).
-     * */
-    std::multimap<std::string, std::string> RANDOMWORK, WORK1, WORK2;
+    int RANDOM_WORK;
     switch (RandomInteger(0, 1)) {
         case 0:
-            RANDOMWORK = WORK1;
+            RANDOM_WORK = 0;
             break;
         case 1:
-            RANDOMWORK = WORK2;
+            RANDOM_WORK = 1;
             break;
     }
 
@@ -50,34 +46,34 @@ void Working::Enter(Agent* pAgent)
     if ((GetNameOfEntity(pAgent->ID()) == "Agent Charlie"))
         if ((pAgent->Location() != charlieMcDonalds) and (pAgent->Location() != charlieCoalMine))
         {
-            if (RANDOMWORK == WORK1 )
-                pAgent->ChangeLocation(charlieMcDonalds); //TODO: Needs to change to one of the two workplaces
-            if (RANDOMWORK == WORK2 )
-                pAgent->ChangeLocation(charlieCoalMine); //TODO: Needs to change to one of the two workplaces
+            if (RANDOM_WORK == 0)
+                pAgent->ChangeLocation(charlieMcDonalds);
+            if (RANDOM_WORK == 1)
+                pAgent->ChangeLocation(charlieCoalMine);
         }
     if ((GetNameOfEntity(pAgent->ID()) == "Friend Elena"))
         if ((pAgent->Location() != elenaChemicalFactory) and (pAgent->Location() != elenaPowerPlant))
         {
-            if (RANDOMWORK == WORK1 )
-                pAgent->ChangeLocation(elenaChemicalFactory); //TODO: Needs to change to one of the two workplaces
-            if (RANDOMWORK == WORK2 )
-                pAgent->ChangeLocation(elenaPowerPlant); //TODO: Needs to change to one of the two workplaces
+            if (RANDOM_WORK == 0)
+                pAgent->ChangeLocation(elenaChemicalFactory);
+            if (RANDOM_WORK == 1)
+                pAgent->ChangeLocation(elenaPowerPlant);
         }
     if ((GetNameOfEntity(pAgent->ID()) == "Friend Jonny"))
         if ((pAgent->Location() != jonnyCarFactory) and (pAgent->Location() != jonnyHospital))
         {
-            if (RANDOMWORK == WORK1 )
-                pAgent->ChangeLocation(jonnyCarFactory); //TODO: Needs to change to one of the two workplaces
-            if (RANDOMWORK == WORK2 )
-                pAgent->ChangeLocation(jonnyHospital); //TODO: Needs to change to one of the two workplaces
+            if (RANDOM_WORK == 0)
+                pAgent->ChangeLocation(jonnyCarFactory);
+            if (RANDOM_WORK == 1)
+                pAgent->ChangeLocation(jonnyHospital);
         }
     if ((GetNameOfEntity(pAgent->ID()) == "Friend Mike"))
         if ((pAgent->Location() != mikePrison) and (pAgent->Location() != mikePizzeria))
         {
-            if (RANDOMWORK == WORK1 )
-                pAgent->ChangeLocation(mikePrison); //TODO: Needs to change to one of the two workplaces
-            if (RANDOMWORK == WORK2 )
-                pAgent->ChangeLocation(mikePizzeria); //TODO: Needs to change to one of the two workplaces
+            if (RANDOM_WORK == 0)
+                pAgent->ChangeLocation(mikePrison);
+            if (RANDOM_WORK == 1)
+                pAgent->ChangeLocation(mikePizzeria);
         }
     WORD COLOR = setColor(pAgent);
     std::multimap<std::string, std::string> WORK = setWork(pAgent);
