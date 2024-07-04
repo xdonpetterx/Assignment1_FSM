@@ -32,7 +32,7 @@ private:
     //pointers to entities are cross referenced by their identifying number
     EntityMap m_EntityMap;
 
-    EntityManager(){}
+    EntityManager()= default;
 
     //copy ctor and assignment should be private
     EntityManager(const EntityManager&);

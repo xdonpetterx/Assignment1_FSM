@@ -62,24 +62,11 @@ std::multimap<std::string, std::string> setWork(Agent* pAgent)
         WORK.insert(std::make_pair("exitWork","I'm leaving work"));
         WORK.insert(std::make_pair("exitWork","I'm leaving work"));
     }
-//    switch (RandomInteger(0, 1)) {
-//        case 0:
-//            WORK = WORK1;
-//            break;
-//        case 1:
-//            WORK = WORK2;
-//            break;
-//    }
     return WORK;
 }
 
 std::multimap<std::string, std::string> depositCash(Agent* pAgent)
 {
-    // auto charlieWealth = std::format("Here's mi money. Total savings now: {}$", pAgent->Wealth());
-    // auto elenaWealth = std::format("Depositing savings. Total savings now: {}$", pAgent->Wealth());
-    // auto jonnyWealth = std::format("Depositing savings. Total savings now: {}$", pAgent->Wealth());
-    // auto mikeWealth = std::format("Depositing savings. Total savings now: {}$", pAgent->Wealth());
-
     std::multimap<std::string, std::string> DEPOSIT;
     if (GetNameOfEntity(pAgent->ID()) == "Agent Charlie"){
         DEPOSIT.insert(std::make_pair("enterBank","Going to the Bank. Yes sir!"));

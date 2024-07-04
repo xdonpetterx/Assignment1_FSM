@@ -8,14 +8,15 @@
 #include <StateMachine/BaseGameEntity.h>
 #include <StateMachine/StateMachine.h>
 
-template <class entity_type> class State; //pre-fixed with "template <class entity_type> " for vs8 compatibility
+template <class entity_type> class State;
 
 struct SMS;
 
+//TODO: Either these values should be individual or Increase Fatigue etc. should be individual! All the agents need different stats so that they can live different lives!
 //the amount of cash an Agent must have before he feels comfortable
 const int ComfortLevel       = 5;
 //the amount of cash an Agent can carry
-const int MaxCash         = 3;
+const int MaxCash            = 3;
 //above this value an Agent is thirsty
 const int ThirstLevel        = 5;
 //above this value an Agent is hungry
@@ -23,9 +24,9 @@ const int HungerLevel        = 4;
 //above this value an Agent is sleepy
 const int TirednessThreshold = 5;
 //above this value an Agent is bored and want to meet friends
-const int BoredomLevel        = 8;
+const int BoredomLevel       = 8;
 //above this value an Agent is keen on buying stuff
-const int KeenOnBuyingLevel        = 7;
+const int KeenOnBuyingLevel  = 7;
 
 
 class Agent : public BaseGameEntity
