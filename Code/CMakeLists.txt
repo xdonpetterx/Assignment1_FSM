@@ -29,6 +29,7 @@ add_executable(Assignment1_FSM  main.cpp
 
         "Utilities/TextColor.h"
         "Utilities/Utilities.h"
+        "Utilities/GameTimer.h"
 )
 
 # INCLUDE DIRECTORIES AND LINK LIBRARIES

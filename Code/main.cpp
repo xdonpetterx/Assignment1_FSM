@@ -8,6 +8,7 @@
 #include <Characters/EntityNames.h>
 #include <Messaging/EntityManager.h>
 #include <Messaging/MessageDispatcher.h>
+#include <Utilities/GameTimer.h>
 
 
 int main()

@@ -15,11 +15,11 @@ inline std::string MsgToStr(int msg)
     {
         case Msg_WhatsUp:
 
-            return "WhatsUp?";
+            return "WhatsUp? ";
 
         case Msg_VideoGames:
 
-            return "Play videogames?";
+            return "Play videogames? ";
 
         default:
 
